@@ -9,217 +9,225 @@
 <meta name="theme-color" content="#0C0F1A">
 <title>Hábitos · Rodrigo</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body {
-    background: #0C0F1A;
-    color: #E8E4DC;
-    font-family: Georgia, serif;
-    min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 0 80px;
-    overflow-x: hidden;
-  }
-  button { cursor: pointer; font-family: Georgia, serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  background: #0C0F1A; color: #E8E4DC;
+  font-family: Georgia, serif; min-height: 100vh;
+  max-width: 480px; margin: 0 auto;
+  padding: 0 0 80px; overflow-x: hidden;
+}
+button { cursor: pointer; font-family: Georgia, serif; }
+input, select { font-family: sans-serif; }
 
-  /* NAV */
-  #nav {
-    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 480px;
-    background: #0E1122;
-    border-top: 1px solid #1E2235;
-    display: flex;
-    z-index: 100;
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  .nav-btn {
-    flex: 1; padding: 12px 4px 10px;
-    background: none; border: none;
-    color: #4B5563; font-size: 10px;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    transition: color 0.15s;
-  }
-  .nav-btn.active { color: #E8E4DC; }
-  .nav-btn .nav-icon { font-size: 20px; line-height: 1; }
+/* ── NAV ── */
+#nav {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  background: #0E1122; border-top: 1px solid #1E2235;
+  display: flex; z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.nav-btn {
+  flex: 1; padding: 12px 4px 10px;
+  background: none; border: none; color: #4B5563; font-size: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  transition: color 0.15s;
+}
+.nav-btn.active { color: #E8E4DC; }
+.nav-btn .nav-icon { font-size: 20px; line-height: 1; }
 
-  /* HEADER */
-  #header {
-    padding: 52px 18px 0;
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  #header .label { color: #4B5563; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-family: sans-serif; margin-bottom: 3px; }
-  #header h1 { font-size: 24px; font-weight: normal; letter-spacing: -0.5px; }
+/* ── HEADER ── */
+#header {
+  padding: 52px 18px 0;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 20px;
+}
+#header .label { color: #4B5563; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-family: sans-serif; margin-bottom: 3px; }
+#header h1 { font-size: 24px; font-weight: normal; letter-spacing: -0.5px; }
+#hamburger-btn {
+  background: none; border: none; padding: 4px 0 4px 8px;
+  display: flex; flex-direction: column; gap: 5px; align-items: flex-end; margin-top: 6px;
+}
+#hamburger-btn span {
+  display: block; height: 2px; background: #6B7280; border-radius: 2px; transition: all 0.2s;
+}
+#hamburger-btn span:nth-child(1) { width: 22px; }
+#hamburger-btn span:nth-child(2) { width: 16px; }
+#hamburger-btn span:nth-child(3) { width: 22px; }
 
-  /* VIEWS */
-  .view { display: none; padding: 0 18px; }
-  .view.active { display: block; }
+/* ── DRAWER ── */
+#drawer-overlay {
+  display: none; position: fixed; inset: 0; background: #0008; z-index: 400;
+}
+#drawer-overlay.open { display: block; }
+#drawer {
+  position: fixed; top: 0; right: -280px; width: 280px; height: 100%;
+  background: #0E1122; border-left: 1px solid #1E2235;
+  z-index: 500; transition: right 0.28s cubic-bezier(.4,0,.2,1);
+  padding: env(safe-area-inset-top, 44px) 0 40px;
+  display: flex; flex-direction: column;
+}
+#drawer.open { right: 0; }
+.drawer-header { padding: 20px 22px 16px; border-bottom: 1px solid #1E2235; }
+.drawer-title { font-size: 13px; color: #4B5563; font-family: sans-serif; letter-spacing: 2px; text-transform: uppercase; }
+.drawer-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 22px; cursor: pointer;
+  border-bottom: 1px solid #0F1120;
+  background: none; border-left: none; border-right: none; border-top: none;
+  width: 100%; text-align: left; color: #E8E4DC;
+  transition: background 0.15s;
+}
+.drawer-item:active { background: #1A1D2E; }
+.drawer-item .di-icon { font-size: 20px; width: 28px; text-align: center; }
+.drawer-item .di-text { font-size: 15px; font-family: sans-serif; }
+.drawer-item .di-sub { font-size: 11px; color: #6B7280; margin-top: 2px; }
+.drawer-sep { height: 1px; background: #1E2235; margin: 8px 0; }
+.drawer-item.danger .di-text { color: #F87171; }
 
-  /* SECTION LABEL */
-  .sec-label { font-size: 11px; color: #4B5563; font-family: sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+/* ── VIEWS ── */
+.view { display: none; padding: 0 18px; }
+.view.active { display: block; }
+.sec-label { font-size: 11px; color: #4B5563; font-family: sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
 
-  /* WEEK STRIP */
-  #week-strip { display: flex; gap: 5px; margin-bottom: 20px; }
-  .strip-day {
-    flex: 1; border-radius: 10px; padding: 7px 3px; text-align: center;
-    cursor: pointer; border: 1px solid transparent; transition: all 0.15s;
-  }
-  .strip-day.selected { background: #1A1D2E; border-color: #2D3348; }
-  .strip-day.future { opacity: 0.25; pointer-events: none; }
-  .strip-day .day-name { font-size: 9px; color: #6B7280; font-family: sans-serif; margin-bottom: 5px; }
-  .strip-day.today .day-name { color: #F59E0B; }
-  .strip-ring {
-    width: 26px; height: 26px; border-radius: 50%; margin: 0 auto;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-family: sans-serif; background: #1E2235; color: #374151;
-  }
+/* ── WEEK STRIP ── */
+#week-strip { display: flex; gap: 5px; margin-bottom: 20px; }
+.strip-day { flex: 1; border-radius: 10px; padding: 7px 3px; text-align: center; cursor: pointer; border: 1px solid transparent; transition: all 0.15s; }
+.strip-day.selected { background: #1A1D2E; border-color: #2D3348; }
+.strip-day.future { opacity: 0.25; pointer-events: none; }
+.strip-day .day-name { font-size: 9px; color: #6B7280; font-family: sans-serif; margin-bottom: 5px; }
+.strip-day.today .day-name { color: #F59E0B; }
+.strip-ring { width: 26px; height: 26px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: sans-serif; background: #1E2235; color: #374151; }
 
-  /* DAILY CARD */
-  .day-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-  .day-title { font-size: 22px; letter-spacing: -0.5px; }
-  .day-sub { color: #6B7280; font-size: 13px; font-family: sans-serif; margin-top: 2px; }
+/* ── DAILY ── */
+.day-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.day-title { font-size: 22px; letter-spacing: -0.5px; }
+.day-sub { color: #6B7280; font-size: 13px; font-family: sans-serif; margin-top: 2px; }
+.habit-row { display: flex; align-items: center; gap: 13px; border-radius: 13px; padding: 14px 16px; margin-bottom: 9px; cursor: pointer; border: 1px solid #1E2235; background: #0F1120; transition: all 0.18s; user-select: none; -webkit-user-select: none; }
+.habit-row.checked { background: #161929; }
+.habit-row.future { opacity: 0.4; pointer-events: none; }
+.habit-check { width: 24px; height: 24px; border-radius: 7px; flex-shrink: 0; border: 2px solid #2D3348; background: transparent; display: flex; align-items: center; justify-content: center; transition: all 0.18s; font-size: 13px; font-weight: bold; color: #0C0F1A; }
+.habit-icon { font-size: 20px; }
+.habit-label { font-size: 14px; color: #9CA3AF; font-family: sans-serif; }
+.habit-row.checked .habit-label { color: #E8E4DC; }
+.habit-streak { font-size: 11px; font-family: sans-serif; margin-top: 2px; }
 
-  .habit-row {
-    display: flex; align-items: center; gap: 13px;
-    border-radius: 13px; padding: 14px 16px; margin-bottom: 9px;
-    cursor: pointer; border: 1px solid #1E2235;
-    background: #0F1120; transition: all 0.18s;
-    user-select: none; -webkit-user-select: none;
-  }
-  .habit-row.checked { background: #161929; }
-  .habit-row.future { opacity: 0.4; pointer-events: none; }
-  .habit-check {
-    width: 24px; height: 24px; border-radius: 7px; flex-shrink: 0;
-    border: 2px solid #2D3348; background: transparent;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.18s; font-size: 13px; font-weight: bold; color: #0C0F1A;
-  }
-  .habit-icon { font-size: 20px; }
-  .habit-label { font-size: 14px; color: #9CA3AF; font-family: sans-serif; }
-  .habit-row.checked .habit-label { color: #E8E4DC; }
-  .habit-streak { font-size: 11px; font-family: sans-serif; margin-top: 2px; }
+/* ── WEEKLY ── */
+.week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.week-nav-btn { background: #1A1D2E; border: 1px solid #252840; color: #9CA3AF; border-radius: 8px; padding: 6px 14px; font-size: 18px; }
+.week-nav-btn:disabled { color: #2D3348; }
+.week-nav-center { text-align: center; }
+.week-nav-title { font-size: 15px; font-family: sans-serif; }
+.week-nav-sub { font-size: 12px; color: #6B7280; font-family: sans-serif; }
+.wgrid { display: grid; grid-template-columns: 76px repeat(7, 1fr); gap: 4px; }
+.wgrid-head { margin-bottom: 6px; }
+.col-day { text-align: center; }
+.col-day .cd-name { font-size: 10px; color: #6B7280; font-family: sans-serif; letter-spacing: 0.5px; }
+.col-day.today .cd-name { color: #F59E0B; }
+.col-day .cd-num { font-size: 12px; color: #9CA3AF; font-family: sans-serif; }
+.col-day.today .cd-num { color: #F59E0B; }
+.col-day.future .cd-num { color: #374151; }
+.wrow-label { display: flex; align-items: center; gap: 5px; padding-right: 4px; }
+.wrow-label .rl-icon { font-size: 15px; }
+.wrow-label .rl-name { font-size: 10px; color: #9CA3AF; font-family: sans-serif; line-height: 1.2; }
+.wrow-label .rl-count { font-size: 10px; font-family: sans-serif; }
+.wcell { height: 34px; border-radius: 8px; background: #111422; border: 1px solid #1E2235; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; font-size: 13px; }
+.wcell.future { opacity: 0.25; pointer-events: none; }
+.wtotal-cell { height: 26px; border-radius: 7px; background: #1A1D2E; display: flex; align-items: center; justify-content: center; font-size: 12px; font-family: sans-serif; font-weight: 600; color: #4B5563; }
+.wtotal-cell.future { background: transparent; }
+.goals-list { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.goal-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.goal-name { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #9CA3AF; font-family: sans-serif; }
+.goal-count { font-size: 11px; font-family: sans-serif; }
+.goal-bar-bg { height: 5px; border-radius: 3px; background: #1A1D2E; overflow: hidden; }
+.goal-bar { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+.streaks { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.streak-chip { background: #111422; border: 1px solid #1E2235; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+.streak-chip .sc-icon { font-size: 16px; }
+.streak-chip .sc-name { font-size: 11px; color: #9CA3AF; font-family: sans-serif; }
+.streak-chip .sc-val { font-size: 14px; color: #374151; }
 
-  /* WEEKLY GRID */
-  .week-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-  .week-nav-btn { background: #1A1D2E; border: 1px solid #252840; color: #9CA3AF; border-radius: 8px; padding: 6px 14px; font-size: 18px; }
-  .week-nav-btn:disabled { color: #2D3348; }
-  .week-nav-center { text-align: center; }
-  .week-nav-title { font-size: 15px; font-family: sans-serif; }
-  .week-nav-sub { font-size: 12px; color: #6B7280; font-family: sans-serif; }
+/* ── MONTHLY ── */
+.month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.month-nav-title { font-size: 18px; letter-spacing: -0.3px; }
+.month-nav-sub { font-size: 12px; color: #6B7280; font-family: sans-serif; margin-top: 2px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 24px; }
+.cal-head { text-align: center; font-size: 10px; color: #4B5563; font-family: sans-serif; padding: 4px 0; letter-spacing: 0.5px; }
+.cal-day { aspect-ratio: 1; border-radius: 8px; background: #111422; border: 1px solid #1E2235; display: flex; align-items: center; justify-content: center; font-size: 12px; font-family: sans-serif; color: #6B7280; cursor: pointer; transition: all 0.15s; flex-direction: column; gap: 1px; }
+.cal-day.empty { background: transparent; border-color: transparent; cursor: default; }
+.cal-day.today { border-color: #F59E0B44; color: #F59E0B; }
+.cal-day.future { opacity: 0.3; pointer-events: none; }
+.cal-day .cal-dot { width: 4px; height: 4px; border-radius: 50%; }
+.month-weeks { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.mweek-card { background: #111422; border: 1px solid #1E2235; border-radius: 14px; padding: 14px 16px; }
+.mweek-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.mweek-label { font-size: 13px; font-family: sans-serif; color: #E8E4DC; }
+.mweek-pct { font-size: 13px; font-family: sans-serif; }
+.mweek-bars { display: flex; flex-direction: column; gap: 6px; }
+.mweek-bar-row { display: flex; align-items: center; gap: 8px; }
+.mweek-bar-label { font-size: 10px; font-family: sans-serif; color: #6B7280; width: 32px; flex-shrink: 0; }
+.mweek-bar-bg { flex: 1; height: 6px; border-radius: 3px; background: #1A1D2E; overflow: hidden; }
+.mweek-bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s; }
+.mweek-bar-val { font-size: 10px; font-family: sans-serif; color: #6B7280; width: 24px; text-align: right; flex-shrink: 0; }
+.month-habit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mhc { background: #111422; border: 1px solid #1E2235; border-radius: 12px; padding: 12px 14px; }
+.mhc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.mhc-icon { font-size: 18px; }
+.mhc-name { font-size: 12px; font-family: sans-serif; color: #9CA3AF; }
+.mhc-nums { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.mhc-count { font-size: 22px; letter-spacing: -1px; }
+.mhc-goal { font-size: 11px; color: #4B5563; font-family: sans-serif; }
+.mhc-bar-bg { height: 4px; border-radius: 2px; background: #1A1D2E; overflow: hidden; }
+.mhc-bar-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
+.backup-row { display: flex; gap: 8px; margin-top: 20px; }
+.backup-btn { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #252840; background: #111422; color: #9CA3AF; font-size: 12px; font-family: sans-serif; }
+.backup-btn:active { background: #1A1D2E; }
 
-  .wgrid { display: grid; grid-template-columns: 76px repeat(7, 1fr); gap: 4px; }
-  .wgrid-head { margin-bottom: 6px; }
-  .wgrid-head .col-day { text-align: center; }
-  .col-day .cd-name { font-size: 10px; color: #6B7280; font-family: sans-serif; letter-spacing: 0.5px; }
-  .col-day.today .cd-name { color: #F59E0B; }
-  .col-day .cd-num { font-size: 12px; color: #9CA3AF; font-family: sans-serif; }
-  .col-day.today .cd-num { color: #F59E0B; }
-  .col-day.future .cd-num { color: #374151; }
+/* ── TOAST ── */
+#toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #1E2235; border: 1px solid #2D3348; border-radius: 10px; padding: 10px 20px; font-size: 13px; font-family: sans-serif; color: #E8E4DC; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; z-index: 200; }
+#toast.show { opacity: 1; }
+.ring-wrap { flex-shrink: 0; }
 
-  .wrow-label { display: flex; align-items: center; gap: 5px; padding-right: 4px; }
-  .wrow-label .rl-icon { font-size: 15px; }
-  .wrow-label .rl-name { font-size: 10px; color: #9CA3AF; font-family: sans-serif; line-height: 1.2; }
-  .wrow-label .rl-count { font-size: 10px; font-family: sans-serif; }
+/* ── MODAL BASE ── */
+.modal-overlay { display: none; position: fixed; inset: 0; background: #000a; z-index: 600; align-items: flex-end; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal-sheet { background: #131626; border: 1px solid #252840; border-radius: 20px 20px 0 0; padding: 28px 22px 40px; width: 100%; max-width: 480px; }
+.modal-title { font-size: 18px; margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: #6B7280; font-family: sans-serif; margin-bottom: 22px; line-height: 1.5; }
 
-  .wcell {
-    height: 34px; border-radius: 8px; background: #111422;
-    border: 1px solid #1E2235;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.15s; font-size: 13px;
-  }
-  .wcell.future { opacity: 0.25; pointer-events: none; }
-  .wcell .dot { color: #2D3348; font-size: 10px; }
+/* ── FORM ── */
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 11px; color: #6B7280; font-family: sans-serif; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+.form-input { width: 100%; padding: 12px 14px; background: #0F1120; border: 1px solid #2D3348; border-radius: 10px; color: #E8E4DC; font-size: 15px; font-family: sans-serif; outline: none; }
+.form-input:focus { border-color: #818CF8; }
+.form-row { display: flex; gap: 10px; }
+.form-row .form-group { flex: 1; }
 
-  .wtotal-row { margin-top: 8px; }
-  .wtotal-cell {
-    height: 26px; border-radius: 7px; background: #1A1D2E;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-family: sans-serif; font-weight: 600; color: #4B5563;
-  }
-  .wtotal-cell.future { background: transparent; }
+/* Emoji picker */
+.emoji-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-top: 6px; }
+.emoji-opt { font-size: 22px; padding: 6px; border-radius: 8px; border: 2px solid transparent; background: #0F1120; cursor: pointer; text-align: center; transition: all 0.15s; }
+.emoji-opt.selected { border-color: #818CF8; background: #1A1D2E; }
 
-  /* Goals bars */
-  .goals-list { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
-  .goal-item {}
-  .goal-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-  .goal-name { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #9CA3AF; font-family: sans-serif; }
-  .goal-count { font-size: 11px; font-family: sans-serif; }
-  .goal-bar-bg { height: 5px; border-radius: 3px; background: #1A1D2E; overflow: hidden; }
-  .goal-bar { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+/* Color picker */
+.color-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.color-opt { width: 32px; height: 32px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: all 0.15s; }
+.color-opt.selected { border-color: #fff; transform: scale(1.1); }
 
-  /* Streaks */
-  .streaks { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
-  .streak-chip {
-    background: #111422; border: 1px solid #1E2235;
-    border-radius: 10px; padding: 8px 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .streak-chip .sc-icon { font-size: 16px; }
-  .streak-chip .sc-name { font-size: 11px; color: #9CA3AF; font-family: sans-serif; }
-  .streak-chip .sc-val { font-size: 14px; color: #374151; }
+/* Habit manage list */
+.manage-habit-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #1A1D2E; }
+.manage-habit-row:last-child { border-bottom: none; }
+.mhr-info { flex: 1; }
+.mhr-name { font-size: 14px; font-family: sans-serif; color: #E8E4DC; }
+.mhr-goal { font-size: 11px; color: #6B7280; font-family: sans-serif; margin-top: 2px; }
+.mhr-btn { background: #0F1120; border: 1px solid #2D3348; border-radius: 8px; padding: 6px 10px; font-size: 13px; color: #9CA3AF; }
+.mhr-btn.del { color: #F87171; border-color: #7F1D1D44; }
+.mhr-btn:active { background: #1A1D2E; }
 
-  /* MONTHLY VIEW */
-  .month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-  .month-nav-title { font-size: 18px; letter-spacing: -0.3px; }
-  .month-nav-sub { font-size: 12px; color: #6B7280; font-family: sans-serif; margin-top: 2px; }
-
-  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 24px; }
-  .cal-head { text-align: center; font-size: 10px; color: #4B5563; font-family: sans-serif; padding: 4px 0; letter-spacing: 0.5px; }
-  .cal-day {
-    aspect-ratio: 1; border-radius: 8px; background: #111422; border: 1px solid #1E2235;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-family: sans-serif; color: #6B7280;
-    cursor: pointer; transition: all 0.15s; flex-direction: column; gap: 1px;
-  }
-  .cal-day.empty { background: transparent; border-color: transparent; cursor: default; }
-  .cal-day.today { border-color: #F59E0B44; color: #F59E0B; }
-  .cal-day.future { opacity: 0.3; pointer-events: none; }
-  .cal-day .cal-dot { width: 4px; height: 4px; border-radius: 50%; }
-
-  /* Weekly breakdown in monthly */
-  .month-weeks { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-  .mweek-card { background: #111422; border: 1px solid #1E2235; border-radius: 14px; padding: 14px 16px; }
-  .mweek-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .mweek-label { font-size: 13px; font-family: sans-serif; color: #E8E4DC; }
-  .mweek-pct { font-size: 13px; font-family: sans-serif; }
-  .mweek-bars { display: flex; flex-direction: column; gap: 6px; }
-  .mweek-bar-row { display: flex; align-items: center; gap: 8px; }
-  .mweek-bar-label { font-size: 10px; font-family: sans-serif; color: #6B7280; width: 32px; flex-shrink: 0; }
-  .mweek-bar-bg { flex: 1; height: 6px; border-radius: 3px; background: #1A1D2E; overflow: hidden; }
-  .mweek-bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s; }
-  .mweek-bar-val { font-size: 10px; font-family: sans-serif; color: #6B7280; width: 24px; text-align: right; flex-shrink: 0; }
-
-  /* Monthly habit summary */
-  .month-habit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .mhc { background: #111422; border: 1px solid #1E2235; border-radius: 12px; padding: 12px 14px; }
-  .mhc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-  .mhc-icon { font-size: 18px; }
-  .mhc-name { font-size: 12px; font-family: sans-serif; color: #9CA3AF; }
-  .mhc-nums { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-  .mhc-count { font-size: 22px; letter-spacing: -1px; }
-  .mhc-goal { font-size: 11px; color: #4B5563; font-family: sans-serif; }
-  .mhc-bar-bg { height: 4px; border-radius: 2px; background: #1A1D2E; overflow: hidden; }
-  .mhc-bar-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
-
-  /* Backup */
-  .backup-row { display: flex; gap: 8px; margin-top: 20px; }
-  .backup-btn {
-    flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #252840;
-    background: #111422; color: #9CA3AF; font-size: 12px; font-family: sans-serif;
-  }
-  .backup-btn:active { background: #1A1D2E; }
-
-  /* Toast */
-  #toast {
-    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
-    background: #1E2235; border: 1px solid #2D3348; border-radius: 10px;
-    padding: 10px 20px; font-size: 13px; font-family: sans-serif; color: #E8E4DC;
-    opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; z-index: 200;
-  }
-  #toast.show { opacity: 1; }
-
-  /* Ring SVG helper */
-  .ring-wrap { flex-shrink: 0; }
+/* Primary / secondary buttons */
+.btn-primary { width: 100%; padding: 14px; background: #818CF8; border: none; border-radius: 12px; color: #fff; font-size: 15px; font-family: sans-serif; font-weight: 600; margin-bottom: 10px; }
+.btn-primary:active { background: #6366F1; }
+.btn-secondary { width: 100%; padding: 12px; background: transparent; border: 1px solid #252840; border-radius: 12px; color: #6B7280; font-size: 14px; font-family: sans-serif; }
+.btn-danger { width: 100%; padding: 14px; background: #7F1D1D; border: none; border-radius: 12px; color: #FCA5A5; font-size: 15px; font-family: sans-serif; font-weight: 600; margin-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -229,23 +237,18 @@
     <div class="label">Rodrigo</div>
     <h1>Hábitos</h1>
   </div>
+  <button id="hamburger-btn" onclick="openDrawer()">
+    <span></span><span></span><span></span>
+  </button>
 </div>
 
-<!-- DAILY VIEW -->
+<!-- VIEWS -->
 <div id="view-daily" class="view active">
   <div id="week-strip"></div>
   <div id="daily-content"></div>
 </div>
-
-<!-- WEEKLY VIEW -->
-<div id="view-weekly" class="view">
-  <div id="weekly-content"></div>
-</div>
-
-<!-- MONTHLY VIEW -->
-<div id="view-monthly" class="view">
-  <div id="monthly-content"></div>
-</div>
+<div id="view-weekly" class="view"><div id="weekly-content"></div></div>
+<div id="view-monthly" class="view"><div id="monthly-content"></div></div>
 
 <!-- BOTTOM NAV -->
 <nav id="nav">
@@ -262,41 +265,153 @@
 
 <div id="toast"></div>
 
+<!-- ── DRAWER ── -->
+<div id="drawer-overlay" onclick="closeDrawer()"></div>
+<div id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-title">Menu</div>
+  </div>
+  <button class="drawer-item" onclick="openAddHabit(); closeDrawer()">
+    <span class="di-icon">➕</span>
+    <div><div class="di-text">Novo hábito</div><div class="di-sub">Adicionar ao acompanhamento</div></div>
+  </button>
+  <button class="drawer-item" onclick="openManageHabits(); closeDrawer()">
+    <span class="di-icon">✏️</span>
+    <div><div class="di-text">Editar hábitos</div><div class="di-sub">Alterar nome, ícone, meta</div></div>
+  </button>
+  <button class="drawer-item" onclick="openManageHabits('delete'); closeDrawer()">
+    <span class="di-icon">🗑️</span>
+    <div><div class="di-text">Excluir hábito</div><div class="di-sub">Remover do acompanhamento</div></div>
+  </button>
+  <div class="drawer-sep"></div>
+  <button class="drawer-item" onclick="exportData(); closeDrawer()">
+    <span class="di-icon">⬇️</span>
+    <div><div class="di-text">Exportar backup</div><div class="di-sub">Salvar dados em JSON</div></div>
+  </button>
+  <button class="drawer-item" onclick="importData(); closeDrawer()">
+    <span class="di-icon">⬆️</span>
+    <div><div class="di-text">Importar backup</div><div class="di-sub">Restaurar dados salvos</div></div>
+  </button>
+</div>
+
+<!-- ── MODAL: NOVO / EDITAR HÁBITO ── -->
+<div id="modal-habit" class="modal-overlay">
+  <div class="modal-sheet">
+    <div class="modal-title" id="modal-habit-title">Novo hábito</div>
+    <div class="modal-sub" id="modal-habit-sub">Defina nome, ícone, cor e meta semanal.</div>
+
+    <div class="form-group">
+      <label class="form-label">Nome</label>
+      <input id="hf-name" class="form-input" placeholder="Ex: Meditação" maxlength="30">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Ícone</label>
+      <div class="emoji-grid" id="emoji-grid"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Cor</label>
+      <div class="color-grid" id="color-grid"></div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Meta semanal (dias)</label>
+        <input id="hf-goal" class="form-input" type="number" min="1" max="7" value="3" style="text-align:center">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Abrev. (4 letras)</label>
+        <input id="hf-short" class="form-input" placeholder="Ex: Med" maxlength="5">
+      </div>
+    </div>
+
+    <button class="btn-primary" id="modal-habit-save" onclick="saveHabit()">Salvar hábito</button>
+    <button class="btn-secondary" onclick="closeHabitModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- ── MODAL: GERENCIAR / EXCLUIR ── -->
+<div id="modal-manage" class="modal-overlay">
+  <div class="modal-sheet" style="max-height:85vh;overflow-y:auto">
+    <div class="modal-title" id="modal-manage-title">Editar hábitos</div>
+    <div class="modal-sub" id="modal-manage-sub">Toque em Editar para alterar um hábito.</div>
+    <div id="manage-list"></div>
+    <button class="btn-secondary" style="margin-top:16px" onclick="closeManageModal()">Fechar</button>
+  </div>
+</div>
+
+<!-- ── MODAL: CONFIRMAR EXCLUSÃO ── -->
+<div id="modal-delete" class="modal-overlay">
+  <div class="modal-sheet">
+    <div style="font-size:28px;text-align:center;margin-bottom:12px">🗑️</div>
+    <div class="modal-title" style="text-align:center">Excluir hábito?</div>
+    <div class="modal-sub" style="text-align:center" id="delete-habit-name"></div>
+    <button class="btn-danger" onclick="confirmDelete()">Sim, excluir</button>
+    <button class="btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- ── MODAL: BACKUP ── -->
+<div id="backup-modal" class="modal-overlay">
+  <div class="modal-sheet">
+    <div style="font-size:28px;margin-bottom:10px;text-align:center">💾</div>
+    <div class="modal-title" style="text-align:center">Backup semanal</div>
+    <div class="modal-sub" style="text-align:center">Faz mais de 7 dias desde o último backup. Salve seus dados para não perder o histórico.</div>
+    <button class="btn-primary" onclick="exportAndClose()">⬇ Fazer backup agora</button>
+    <button class="btn-secondary" onclick="closeBackupModal()">Lembrar semana que vem</button>
+  </div>
+</div>
+
 <script>
-const HABITS = [
-  { id: "acordar",     icon: "☀️", label: "Acordar 6h",  color: "#F59E0B", short: "6h",    goal: 7 },
-  { id: "leitura",     icon: "📖", label: "Leitura",      color: "#818CF8", short: "Leit",  goal: 6 },
-  { id: "sono",        icon: "🌙", label: "Sono 7–7,5h", color: "#38BDF8", short: "Sono",  goal: 6 },
-  { id: "tenis",       icon: "🎾", label: "Tênis",        color: "#34D399", short: "Tênis", goal: 3 },
-  { id: "academia",    icon: "🏋️", label: "Academia",     color: "#FB923C", short: "Acad",  goal: 3 },
-  { id: "corrida",     icon: "🏃", label: "Corrida",      color: "#E879F9", short: "Corr",  goal: 2 },
-  { id: "alimentacao", icon: "🥗", label: "Alimentação",  color: "#F472B6", short: "Alim",  goal: 6 },
-];
-const DAYS_PT   = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
-const MONTHS_PT = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-const MONTHS_SHORT = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+// ── CONSTANTS ──────────────────────────────────────────────────
+const EMOJI_OPTIONS = ["☀️","📖","🌙","🎾","🏋️","🏃","🥗","🧘","💧","🚴","🏊","⚽","🎯","💊","🧠","✍️","🎸","🍎","😴","🌿","🏔️","❤️","🔥","⭐"];
+const COLOR_OPTIONS = ["#F59E0B","#818CF8","#38BDF8","#34D399","#FB923C","#E879F9","#F472B6","#EF4444","#10B981","#06B6D4","#8B5CF6","#EC4899"];
+
+const DAYS_PT    = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+const MONTHS_PT  = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+const MONTHS_SH  = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
 
 // ── STATE ──────────────────────────────────────────────────────
-let data = {};
-try { data = JSON.parse(localStorage.getItem("rodrigo_habitos") || "{}"); } catch {}
+let data   = {};
+let HABITS = [];
+
+function loadState() {
+  try { data   = JSON.parse(localStorage.getItem("rodrigo_habitos")  || "{}"); } catch { data = {}; }
+  try { HABITS = JSON.parse(localStorage.getItem("rodrigo_habits_cfg") || "null"); } catch {}
+  if (!HABITS || !HABITS.length) {
+    HABITS = [
+      { id:"acordar",     icon:"☀️", label:"Acordar 6h",  color:"#F59E0B", short:"6h",    goal:7 },
+      { id:"leitura",     icon:"📖", label:"Leitura",      color:"#818CF8", short:"Leit",  goal:6 },
+      { id:"sono",        icon:"🌙", label:"Sono 7–7,5h", color:"#38BDF8", short:"Sono",  goal:6 },
+      { id:"tenis",       icon:"🎾", label:"Tênis",        color:"#34D399", short:"Tênis", goal:3 },
+      { id:"academia",    icon:"🏋️", label:"Academia",     color:"#FB923C", short:"Acad",  goal:3 },
+      { id:"corrida",     icon:"🏃", label:"Corrida",      color:"#E879F9", short:"Corr",  goal:2 },
+      { id:"alimentacao", icon:"🥗", label:"Alimentação",  color:"#F472B6", short:"Alim",  goal:6 },
+    ];
+    saveHabits();
+  }
+}
+
+function saveHabits() { localStorage.setItem("rodrigo_habits_cfg", JSON.stringify(HABITS)); }
+function save()       { localStorage.setItem("rodrigo_habitos",    JSON.stringify(data));   }
+
+loadState();
 
 let selectedDate = toKey(new Date());
 let weekOffset   = 0;
 let monthOffset  = 0;
 let currentView  = "daily";
 
-function toKey(d) { return d.toISOString().split("T")[0]; }
-function todayKey() { return toKey(new Date()); }
-
-function save() { localStorage.setItem("rodrigo_habitos", JSON.stringify(data)); }
-
+// ── HELPERS ────────────────────────────────────────────────────
+function toKey(d)     { return d.toISOString().split("T")[0]; }
+function todayKey()   { return toKey(new Date()); }
 function isChecked(hid, date) { return !!(data[date] && data[date][hid]); }
 
 function toggle(hid, date) {
   if (!data[date]) data[date] = {};
   data[date][hid] = !data[date][hid];
-  save();
-  render();
+  save(); render();
 }
 
 function dayScore(date) { return HABITS.filter(h => isChecked(h.id, date)).length; }
@@ -307,8 +422,7 @@ function getWeekDates(offset) {
   start.setDate(today.getDate() - today.getDay() + offset * 7);
   start.setHours(0,0,0,0);
   return Array.from({length:7}, (_,i) => {
-    const d = new Date(start); d.setDate(start.getDate()+i);
-    return toKey(d);
+    const d = new Date(start); d.setDate(start.getDate()+i); return toKey(d);
   });
 }
 
@@ -317,158 +431,120 @@ function habitWeekCount(hid, dates) { return dates.filter(d => isChecked(hid, d)
 function weekGoalPct(dates) {
   const achieved = HABITS.reduce((s,h) => s + Math.min(habitWeekCount(h.id, dates), h.goal), 0);
   const total    = HABITS.reduce((s,h) => s + h.goal, 0);
-  return Math.round(achieved / total * 100);
+  return total ? Math.round(achieved / total * 100) : 0;
 }
 
 function streak(hid) {
-  let count = 0;
-  const d = new Date();
+  let count = 0; const d = new Date();
   while(true) {
     const k = toKey(d);
-    if (data[k] && data[k][hid]) { count++; d.setDate(d.getDate()-1); }
-    else break;
+    if (data[k] && data[k][hid]) { count++; d.setDate(d.getDate()-1); } else break;
   }
   return count;
 }
 
-// ── RENDER HELPERS ─────────────────────────────────────────────
-function ring(pct, size, strokeW, color) {
-  const r = (size-strokeW)/2;
-  const circ = 2*Math.PI*r;
-  const fill = pct/100*circ;
+function ring(pct, size, sw, color) {
+  const r = (size-sw)/2, circ = 2*Math.PI*r, fill = pct/100*circ;
   const cx = size/2, cy = size/2;
   return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" class="ring-wrap">
-    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1E2235" stroke-width="${strokeW}"/>
-    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${strokeW}"
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1E2235" stroke-width="${sw}"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}"
       stroke-dasharray="${fill} ${circ}" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>
     <text x="${cx}" y="${cy+4}" text-anchor="middle" fill="#E8E4DC" font-size="${size*0.22}" font-family="Georgia">${pct}%</text>
   </svg>`;
 }
 
-// ── DAILY ──────────────────────────────────────────────────────
+// ── RENDER: DAILY ──────────────────────────────────────────────
 function renderDaily() {
   const today = todayKey();
   const weekDates = getWeekDates(0);
-
-  // Strip
   let stripHtml = "";
   weekDates.forEach((date, i) => {
     const score = dayScore(date);
-    const isT   = date === today;
-    const isSel = date === selectedDate;
-    const isFut = date > today;
-    const pct   = score / HABITS.length;
+    const pct   = score / Math.max(HABITS.length,1);
     const bg    = score > 0 ? `conic-gradient(#34D399 ${pct*360}deg, #1E2235 0deg)` : "#1E2235";
-    stripHtml += `<div class="strip-day${isT?" today":""}${isSel?" selected":""}${isFut?" future":""}"
-      onclick="selectDate('${date}')">
+    stripHtml += `<div class="strip-day${date===today?" today":""}${date===selectedDate?" selected":""}${date>today?" future":""}" onclick="selectDate('${date}')">
       <div class="day-name">${DAYS_PT[i]}</div>
-      <div class="strip-ring" style="background:${bg}">${isFut?"":score}</div>
+      <div class="strip-ring" style="background:${bg}">${date>today?"":score}</div>
     </div>`;
   });
   document.getElementById("week-strip").innerHTML = stripHtml;
 
-  // Day content
   const score   = dayScore(selectedDate);
-  const pct     = Math.round(score / HABITS.length * 100);
+  const pct     = Math.round(score / Math.max(HABITS.length,1) * 100);
   const isToday = selectedDate === today;
   const dateObj = new Date(selectedDate + "T12:00:00");
-  const ringCol = pct===100 ? "#F59E0B" : "#34D399";
-
   let habitsHtml = "";
   HABITS.forEach(h => {
     const checked = isChecked(h.id, selectedDate);
     const s       = streak(h.id);
     const isFut   = selectedDate > today;
-    habitsHtml += `
-      <div class="habit-row${checked?" checked":""}${isFut?" future":""}"
-        onclick="toggle('${h.id}','${selectedDate}')">
-        <div class="habit-check" style="${checked?`border-color:${h.color};background:${h.color}`:`border-color:#2D3348`}">
-          ${checked?"✓":""}
-        </div>
-        <span class="habit-icon">${h.icon}</span>
-        <div style="flex:1">
-          <div class="habit-label">${h.label}</div>
-          ${s>1?`<div class="habit-streak" style="color:${h.color}">🔥 ${s} dias seguidos</div>`:""}
-        </div>
-      </div>`;
+    habitsHtml += `<div class="habit-row${checked?" checked":""}${isFut?" future":""}" onclick="toggle('${h.id}','${selectedDate}')">
+      <div class="habit-check" style="${checked?`border-color:${h.color};background:${h.color}`:`border-color:#2D3348`}">${checked?"✓":""}</div>
+      <span class="habit-icon">${h.icon}</span>
+      <div style="flex:1">
+        <div class="habit-label">${h.label}</div>
+        ${s>1?`<div class="habit-streak" style="color:${h.color}">🔥 ${s} dias seguidos</div>`:""}
+      </div>
+    </div>`;
   });
-
   document.getElementById("daily-content").innerHTML = `
     <div class="day-header">
       <div>
         <div class="day-title">${isToday?"Hoje":DAYS_PT[dateObj.getDay()]}</div>
         <div class="day-sub">${dateObj.getDate()} de ${MONTHS_PT[dateObj.getMonth()]}</div>
       </div>
-      ${ring(pct, 56, 6, ringCol)}
-    </div>
-    ${habitsHtml}`;
+      ${ring(pct, 56, 6, pct===100?"#F59E0B":"#34D399")}
+    </div>${habitsHtml}`;
 }
 
-// ── WEEKLY ─────────────────────────────────────────────────────
+// ── RENDER: WEEKLY ─────────────────────────────────────────────
 function renderWeekly() {
-  const today     = todayKey();
+  const today = todayKey();
   const weekDates = getWeekDates(weekOffset);
-  const pct       = weekGoalPct(weekDates);
+  const pct = weekGoalPct(weekDates);
+  const start = new Date(weekDates[0]+"T12:00:00"), end = new Date(weekDates[6]+"T12:00:00");
+  const wLabel = weekOffset===0?"Esta semana":weekOffset===-1?"Semana passada"
+    :`${start.getDate()} ${MONTHS_SH[start.getMonth()]} – ${end.getDate()} ${MONTHS_SH[end.getMonth()]}`;
 
-  // label
-  const start = new Date(weekDates[0]+"T12:00:00");
-  const end   = new Date(weekDates[6]+"T12:00:00");
-  let wLabel  = weekOffset===0 ? "Esta semana" : weekOffset===-1 ? "Semana passada"
-    : `${start.getDate()} ${MONTHS_SHORT[start.getMonth()]} – ${end.getDate()} ${MONTHS_SHORT[end.getMonth()]}`;
-
-  // Grid header
   let headCols = `<div></div>`;
   weekDates.forEach((date,i) => {
-    const isT   = date===today;
-    const isFut = date>today;
-    const dObj  = new Date(date+"T12:00:00");
-    headCols += `<div class="col-day${isT?" today":""}${isFut?" future":""}">
-      <div class="cd-name">${DAYS_PT[i]}</div>
-      <div class="cd-num">${dObj.getDate()}</div>
-    </div>`;
+    const dObj = new Date(date+"T12:00:00");
+    headCols += `<div class="col-day${date===today?" today":""}${date>today?" future":""}">
+      <div class="cd-name">${DAYS_PT[i]}</div><div class="cd-num">${dObj.getDate()}</div></div>`;
   });
 
-  // Habit rows
   let habitRows = "";
   HABITS.forEach(h => {
-    const wc = habitWeekCount(h.id, weekDates);
-    const col = wc>=h.goal ? "#34D399" : wc>=Math.ceil(h.goal/2) ? h.color : "#6B7280";
+    const wc  = habitWeekCount(h.id, weekDates);
+    const col = wc>=h.goal?"#34D399":wc>=Math.ceil(h.goal/2)?h.color:"#6B7280";
     let cells = `<div class="wrow-label">
       <span class="rl-icon">${h.icon}</span>
-      <div>
-        <div class="rl-name">${h.short}</div>
-        <div class="rl-count" style="color:${col}">${wc}/${h.goal}${wc>=h.goal?" ✓":""}</div>
-      </div>
-    </div>`;
+      <div><div class="rl-name">${h.short}</div>
+      <div class="rl-count" style="color:${col}">${wc}/${h.goal}${wc>=h.goal?" ✓":""}</div></div></div>`;
     weekDates.forEach(date => {
       const checked = isChecked(h.id, date);
-      const isFut   = date>today;
-      cells += `<div class="wcell${isFut?" future":""}"
+      cells += `<div class="wcell${date>today?" future":""}"
         style="${checked?`background:${h.color}33;border-color:${h.color}66`:""}"
         onclick="toggle('${h.id}','${date}')">
-        ${checked ? `<span style="color:${h.color}">✓</span>` : isFut?"":"<span class='dot'>·</span>"}
+        ${checked?`<span style="color:${h.color}">✓</span>`:date>today?"":"<span style='color:#2D3348;font-size:10px'>·</span>"}
       </div>`;
     });
     habitRows += `<div class="wgrid" style="margin-bottom:4px">${cells}</div>`;
   });
 
-  // Total row
   let totalCells = `<div style="font-size:10px;color:#4B5563;font-family:sans-serif;align-self:center">Total</div>`;
   weekDates.forEach(date => {
-    const sc    = dayScore(date);
-    const isFut = date>today;
-    const p     = sc/HABITS.length;
-    const bg    = p===1?"#F59E0B22":p>=0.6?"#34D39922":"#1A1D2E";
-    const col2  = p===1?"#F59E0B":p>=0.6?"#34D399":"#4B5563";
-    totalCells += `<div class="wtotal-cell${isFut?" future":""}" style="${isFut?"":`;background:${bg};color:${col2}`}">${isFut?"":sc}</div>`;
+    const sc = dayScore(date); const p = sc/Math.max(HABITS.length,1);
+    const bg = p===1?"#F59E0B22":p>=0.6?"#34D39922":"#1A1D2E";
+    const cl = p===1?"#F59E0B":p>=0.6?"#34D399":"#4B5563";
+    totalCells += `<div class="wtotal-cell${date>today?" future":""}" style="${date>today?"":`;background:${bg};color:${cl}`}">${date>today?"":sc}</div>`;
   });
 
-  // Goals bars
   let goalBars = "";
   HABITS.forEach(h => {
     const count = habitWeekCount(h.id, weekDates);
-    const p     = Math.min(count/h.goal,1);
-    const done  = count>=h.goal;
+    const p = Math.min(count/h.goal,1); const done = count>=h.goal;
     goalBars += `<div class="goal-item">
       <div class="goal-top">
         <div class="goal-name"><span>${h.icon}</span>${h.label}</div>
@@ -478,55 +554,36 @@ function renderWeekly() {
     </div>`;
   });
 
-  // Streaks
   let streakChips = "";
   HABITS.forEach(h => {
     const s = streak(h.id);
     streakChips += `<div class="streak-chip" style="${s>0?`background:${h.color}22;border-color:${h.color}55`:""}">
       <span class="sc-icon">${h.icon}</span>
-      <div>
-        <div class="sc-name">${h.short}</div>
-        <div class="sc-val" style="color:${s>0?h.color:"#374151"}">${s>0?`🔥 ${s}d`:"—"}</div>
-      </div>
-    </div>`;
+      <div><div class="sc-name">${h.short}</div>
+      <div class="sc-val" style="color:${s>0?h.color:"#374151"}">${s>0?`🔥 ${s}d`:"—"}</div></div></div>`;
   });
 
   document.getElementById("weekly-content").innerHTML = `
     <div class="week-nav">
       <button class="week-nav-btn" onclick="changeWeek(-1)">‹</button>
-      <div class="week-nav-center">
-        <div class="week-nav-title">${wLabel}</div>
-        <div class="week-nav-sub">${pct}% das metas</div>
-      </div>
+      <div class="week-nav-center"><div class="week-nav-title">${wLabel}</div><div class="week-nav-sub">${pct}% das metas</div></div>
       <button class="week-nav-btn" ${weekOffset===0?"disabled":""} onclick="changeWeek(1)">›</button>
     </div>
     <div class="wgrid wgrid-head">${headCols}</div>
     ${habitRows}
     <div class="wgrid" style="margin-top:8px">${totalCells}</div>
-    <div style="margin-top:20px">
-      <div class="sec-label">Metas da semana</div>
-      <div class="goals-list">${goalBars}</div>
-    </div>
-    <div style="margin-top:20px">
-      <div class="sec-label">Sequências</div>
-      <div class="streaks">${streakChips}</div>
-    </div>`;
+    <div style="margin-top:20px"><div class="sec-label">Metas da semana</div><div class="goals-list">${goalBars}</div></div>
+    <div style="margin-top:20px"><div class="sec-label">Sequências</div><div class="streaks">${streakChips}</div></div>`;
 }
 
-// ── MONTHLY ────────────────────────────────────────────────────
+// ── RENDER: MONTHLY ────────────────────────────────────────────
 function getMonthWeeks(year, month) {
-  // Returns array of week arrays [{date, inMonth}]
-  const firstDay = new Date(year, month, 1);
-  const lastDay  = new Date(year, month+1, 0);
-  const weeks    = [];
-  const start    = new Date(firstDay);
-  start.setDate(1 - firstDay.getDay()); // go back to Sunday
+  const firstDay = new Date(year, month, 1), lastDay = new Date(year, month+1, 0);
+  const weeks = [];
+  const start = new Date(firstDay); start.setDate(1 - firstDay.getDay());
   while(start <= lastDay || start.getDay() !== 0) {
     const week = [];
-    for(let i=0;i<7;i++) {
-      week.push({ date: toKey(new Date(start)), inMonth: start.getMonth()===month });
-      start.setDate(start.getDate()+1);
-    }
+    for(let i=0;i<7;i++) { week.push({date:toKey(new Date(start)), inMonth:start.getMonth()===month}); start.setDate(start.getDate()+1); }
     weeks.push(week);
     if(start > lastDay && start.getDay()===0) break;
   }
@@ -534,121 +591,89 @@ function getMonthWeeks(year, month) {
 }
 
 function renderMonthly() {
-  const today   = todayKey();
-  const now     = new Date();
-  const year    = now.getFullYear();
-  const month   = ((now.getMonth() + monthOffset) % 12 + 12) % 12;
-  const yearAdj = year + Math.floor((now.getMonth() + monthOffset) / 12);
-
+  const today = todayKey();
+  const now   = new Date();
+  const month = ((now.getMonth() + monthOffset) % 12 + 12) % 12;
+  const yearAdj = now.getFullYear() + Math.floor((now.getMonth() + monthOffset) / 12);
   const weeks = getMonthWeeks(yearAdj, month);
 
-  // Calendar grid
-  let calHtml = DAYS_PT.map(d => `<div class="cal-head">${d}</div>`).join("");
+  let calHtml = DAYS_PT.map(d=>`<div class="cal-head">${d}</div>`).join("");
   weeks.forEach(week => {
     week.forEach(({date, inMonth}) => {
       if(!inMonth) { calHtml += `<div class="cal-day empty"></div>`; return; }
-      const sc    = dayScore(date);
-      const isT   = date===today;
-      const isFut = date>today;
-      const p     = sc/HABITS.length;
+      const sc = dayScore(date); const p = sc/Math.max(HABITS.length,1);
       const dotCol = p===1?"#F59E0B":p>=0.6?"#34D399":p>0?"#818CF8":"transparent";
-      const dObj  = new Date(date+"T12:00:00");
-      calHtml += `<div class="cal-day${isT?" today":""}${isFut?" future":""}"
-        style="${sc>0&&!isFut?`background:${p===1?"#F59E0B11":"#111422"};border-color:${p===1?"#F59E0B44":"#1E2235"}`:""}">
+      const dObj = new Date(date+"T12:00:00");
+      calHtml += `<div class="cal-day${date===today?" today":""}${date>today?" future":""}"
+        style="${sc>0&&date<=today?`background:${p===1?"#F59E0B11":"#111422"};border-color:${p===1?"#F59E0B44":"#1E2235"}`:""}">
         <span>${dObj.getDate()}</span>
-        ${!isFut?`<div class="cal-dot" style="background:${dotCol}"></div>`:""}
+        ${date<=today?`<div class="cal-dot" style="background:${dotCol}"></div>`:""}
       </div>`;
     });
   });
 
-  // Weekly breakdown cards
   let weekCards = "";
   weeks.forEach((week, wi) => {
-    const weekDatesInMonth = week.filter(d => d.inMonth && d.date <= today).map(d => d.date);
-    if(weekDatesInMonth.length === 0) return;
+    const inMonth = week.filter(d => d.inMonth && d.date <= today).map(d=>d.date);
+    if(!inMonth.length) return;
     const allDates = week.map(d=>d.date);
     const wPct = weekGoalPct(allDates);
-    const wStart = new Date(weekDatesInMonth[0]+"T12:00:00");
-    const wEnd   = new Date(weekDatesInMonth[weekDatesInMonth.length-1]+"T12:00:00");
-    const wLabel = `${wStart.getDate()}–${wEnd.getDate()} ${MONTHS_SHORT[month]}`;
+    const s = new Date(inMonth[0]+"T12:00:00"), e = new Date(inMonth[inMonth.length-1]+"T12:00:00");
+    const wLabel = `${s.getDate()}–${e.getDate()} ${MONTHS_SH[month]}`;
     const pctCol = wPct>=80?"#34D399":wPct>=50?"#F59E0B":"#F472B6";
-
     let barRows = "";
     HABITS.forEach(h => {
-      const count = habitWeekCount(h.id, allDates);
-      const p     = Math.min(count/h.goal,1);
+      const count = habitWeekCount(h.id, allDates); const p = Math.min(count/h.goal,1);
       barRows += `<div class="mweek-bar-row">
         <div class="mweek-bar-label">${h.short}</div>
         <div class="mweek-bar-bg"><div class="mweek-bar-fill" style="width:${p*100}%;background:${count>=h.goal?"#34D399":h.color}"></div></div>
-        <div class="mweek-bar-val">${count}/${h.goal}</div>
-      </div>`;
+        <div class="mweek-bar-val">${count}/${h.goal}</div></div>`;
     });
-
     weekCards += `<div class="mweek-card">
-      <div class="mweek-top">
-        <div class="mweek-label">Semana ${wi+1} · ${wLabel}</div>
-        <div class="mweek-pct" style="color:${pctCol}">${wPct}%</div>
-      </div>
-      <div class="mweek-bars">${barRows}</div>
-    </div>`;
+      <div class="mweek-top"><div class="mweek-label">Semana ${wi+1} · ${wLabel}</div><div class="mweek-pct" style="color:${pctCol}">${wPct}%</div></div>
+      <div class="mweek-bars">${barRows}</div></div>`;
   });
 
-  // Monthly habit totals
-  // Count all days in month up to today
   const daysInMonth = new Date(yearAdj, month+1, 0).getDate();
-  const allMonthDates = Array.from({length:daysInMonth}, (_,i) => {
-    const d = new Date(yearAdj, month, i+1);
-    return toKey(d);
-  }).filter(d => d <= today);
-
+  const allMonthDates = Array.from({length:daysInMonth}, (_,i) => toKey(new Date(yearAdj, month, i+1))).filter(d => d <= today);
   let habitCards = "";
   HABITS.forEach(h => {
-    const count   = allMonthDates.filter(d => isChecked(h.id,d)).length;
+    const count = allMonthDates.filter(d => isChecked(h.id,d)).length;
     const weeksInMonth = Math.ceil(daysInMonth/7);
     const monthGoal = h.goal * weeksInMonth;
     const p = Math.min(count/monthGoal, 1);
     habitCards += `<div class="mhc">
-      <div class="mhc-top">
-        <span class="mhc-icon">${h.icon}</span>
-        <span class="mhc-name">${h.label}</span>
-      </div>
-      <div class="mhc-nums">
-        <span class="mhc-count" style="color:${h.color}">${count}</span>
-        <span class="mhc-goal">meta ~${monthGoal}x</span>
-      </div>
+      <div class="mhc-top"><span class="mhc-icon">${h.icon}</span><span class="mhc-name">${h.label}</span></div>
+      <div class="mhc-nums"><span class="mhc-count" style="color:${h.color}">${count}</span><span class="mhc-goal">meta ~${monthGoal}x</span></div>
       <div class="mhc-bar-bg"><div class="mhc-bar-fill" style="width:${p*100}%;background:${p>=1?"#34D399":h.color}"></div></div>
     </div>`;
   });
 
-  // Backup
-  const backupHtml = `
+  document.getElementById("monthly-content").innerHTML = `
+    <div class="month-nav">
+      <button class="week-nav-btn" onclick="changeMonth(-1)">‹</button>
+      <div><div class="month-nav-title">${MONTHS_PT[month]}</div><div class="month-nav-sub">${yearAdj}</div></div>
+      <button class="week-nav-btn" ${monthOffset===0?"disabled":""} onclick="changeMonth(1)">›</button>
+    </div>
+    <div class="sec-label">Calendário</div>
+    <div class="cal-grid" style="margin-bottom:24px">${calHtml}</div>
+    <div class="sec-label">Por semana</div>
+    <div class="month-weeks">${weekCards}</div>
+    <div class="sec-label">Resumo do mês</div>
+    <div class="month-habit-grid" style="margin-bottom:8px">${habitCards}</div>
     <div class="backup-row">
       <button class="backup-btn" onclick="exportData()">⬇ Exportar backup</button>
       <button class="backup-btn" onclick="importData()">⬆ Importar backup</button>
     </div>`;
-
-  document.getElementById("monthly-content").innerHTML = `
-    <div class="month-nav">
-      <button class="week-nav-btn" onclick="changeMonth(-1)">‹</button>
-      <div>
-        <div class="month-nav-title">${MONTHS_PT[month]}</div>
-        <div class="month-nav-sub">${yearAdj}</div>
-      </div>
-      <button class="week-nav-btn" ${monthOffset===0?"disabled":""} onclick="changeMonth(1)">›</button>
-    </div>
-
-    <div class="sec-label">Calendário</div>
-    <div class="cal-grid" style="margin-bottom:24px">${calHtml}</div>
-
-    <div class="sec-label">Por semana</div>
-    <div class="month-weeks">${weekCards}</div>
-
-    <div class="sec-label">Resumo do mês</div>
-    <div class="month-habit-grid" style="margin-bottom:8px">${habitCards}</div>
-    ${backupHtml}`;
 }
 
-// ── CONTROLS ───────────────────────────────────────────────────
+// ── NAVIGATION ─────────────────────────────────────────────────
+function render() {
+  if(currentView==="daily")   renderDaily();
+  if(currentView==="weekly")  renderWeekly();
+  if(currentView==="monthly") renderMonthly();
+}
+
 function switchView(v) {
   currentView = v;
   document.querySelectorAll(".view").forEach(el => el.classList.remove("active"));
@@ -658,35 +683,165 @@ function switchView(v) {
   render();
 }
 
-function selectDate(date) {
-  selectedDate = date;
-  renderDaily();
+function selectDate(d) { selectedDate = d; renderDaily(); }
+function changeWeek(d) { weekOffset = Math.min(0, weekOffset + d); renderWeekly(); }
+function changeMonth(d) { monthOffset = Math.min(0, monthOffset + d); renderMonthly(); }
+
+// ── DRAWER ─────────────────────────────────────────────────────
+function openDrawer() {
+  document.getElementById("drawer").classList.add("open");
+  document.getElementById("drawer-overlay").classList.add("open");
+}
+function closeDrawer() {
+  document.getElementById("drawer").classList.remove("open");
+  document.getElementById("drawer-overlay").classList.remove("open");
 }
 
-function changeWeek(delta) {
-  weekOffset = Math.min(0, weekOffset + delta);
-  renderWeekly();
+// ── HABIT MODAL ────────────────────────────────────────────────
+let editingHabitId = null;
+let selectedEmoji  = "⭐";
+let selectedColor  = "#818CF8";
+
+function buildEmojiGrid() {
+  document.getElementById("emoji-grid").innerHTML = EMOJI_OPTIONS.map(e =>
+    `<div class="emoji-opt${e===selectedEmoji?" selected":""}" onclick="pickEmoji('${e}')">${e}</div>`
+  ).join("");
 }
 
-function changeMonth(delta) {
-  monthOffset = Math.min(0, monthOffset + delta);
-  renderMonthly();
+function buildColorGrid() {
+  document.getElementById("color-grid").innerHTML = COLOR_OPTIONS.map(c =>
+    `<div class="color-opt${c===selectedColor?" selected":""}" onclick="pickColor('${c}')" style="background:${c}"></div>`
+  ).join("");
 }
 
-function render() {
-  if(currentView==="daily")   renderDaily();
-  if(currentView==="weekly")  renderWeekly();
-  if(currentView==="monthly") renderMonthly();
+function pickEmoji(e) {
+  selectedEmoji = e;
+  document.querySelectorAll(".emoji-opt").forEach(el => el.classList.toggle("selected", el.textContent===e));
+}
+
+function pickColor(c) {
+  selectedColor = c;
+  document.querySelectorAll(".color-opt").forEach(el => el.classList.toggle("selected", el.style.background===c||el.style.backgroundColor===c));
+}
+
+function openAddHabit() {
+  editingHabitId = null;
+  selectedEmoji  = "⭐";
+  selectedColor  = "#818CF8";
+  document.getElementById("hf-name").value  = "";
+  document.getElementById("hf-goal").value  = "3";
+  document.getElementById("hf-short").value = "";
+  document.getElementById("modal-habit-title").textContent = "Novo hábito";
+  document.getElementById("modal-habit-sub").textContent   = "Defina nome, ícone, cor e meta semanal.";
+  document.getElementById("modal-habit-save").textContent  = "Salvar hábito";
+  buildEmojiGrid(); buildColorGrid();
+  document.getElementById("modal-habit").classList.add("open");
+}
+
+function openEditHabit(id) {
+  const h = HABITS.find(x => x.id === id);
+  if(!h) return;
+  editingHabitId = id;
+  selectedEmoji  = h.icon;
+  selectedColor  = h.color;
+  document.getElementById("hf-name").value  = h.label;
+  document.getElementById("hf-goal").value  = h.goal;
+  document.getElementById("hf-short").value = h.short;
+  document.getElementById("modal-habit-title").textContent = "Editar hábito";
+  document.getElementById("modal-habit-sub").textContent   = "Altere as informações do hábito.";
+  document.getElementById("modal-habit-save").textContent  = "Salvar alterações";
+  buildEmojiGrid(); buildColorGrid();
+  closeManageModal();
+  document.getElementById("modal-habit").classList.add("open");
+}
+
+function closeHabitModal() {
+  document.getElementById("modal-habit").classList.remove("open");
+}
+
+function saveHabit() {
+  const name  = document.getElementById("hf-name").value.trim();
+  const goal  = parseInt(document.getElementById("hf-goal").value) || 3;
+  const short = document.getElementById("hf-short").value.trim() || name.substring(0,4);
+  if(!name) { showToast("Digite um nome para o hábito"); return; }
+
+  if(editingHabitId) {
+    const idx = HABITS.findIndex(h => h.id === editingHabitId);
+    if(idx >= 0) {
+      HABITS[idx] = { ...HABITS[idx], label: name, icon: selectedEmoji, color: selectedColor, goal: Math.min(7,Math.max(1,goal)), short };
+    }
+    showToast("Hábito atualizado ✓");
+  } else {
+    const id = "h_" + Date.now();
+    HABITS.push({ id, label: name, icon: selectedEmoji, color: selectedColor, goal: Math.min(7,Math.max(1,goal)), short });
+    showToast("Hábito adicionado ✓");
+  }
+  saveHabits(); closeHabitModal(); render();
+}
+
+// ── MANAGE MODAL ───────────────────────────────────────────────
+let manageMode = "edit";
+
+function openManageHabits(mode = "edit") {
+  manageMode = mode;
+  document.getElementById("modal-manage-title").textContent = mode==="delete" ? "Excluir hábito" : "Editar hábitos";
+  document.getElementById("modal-manage-sub").textContent   = mode==="delete"
+    ? "Toque em Excluir para remover um hábito."
+    : "Toque em Editar para alterar um hábito.";
+
+  document.getElementById("manage-list").innerHTML = HABITS.map(h => `
+    <div class="manage-habit-row">
+      <span style="font-size:22px">${h.icon}</span>
+      <div class="mhr-info">
+        <div class="mhr-name">${h.label}</div>
+        <div class="mhr-goal">Meta: ${h.goal}x/semana</div>
+      </div>
+      ${mode==="delete"
+        ? `<button class="mhr-btn del" onclick="askDelete('${h.id}')">Excluir</button>`
+        : `<button class="mhr-btn" onclick="openEditHabit('${h.id}')">Editar</button>`}
+    </div>`).join("");
+
+  document.getElementById("modal-manage").classList.add("open");
+}
+
+function closeManageModal() {
+  document.getElementById("modal-manage").classList.remove("open");
+}
+
+// ── DELETE ─────────────────────────────────────────────────────
+let deletingHabitId = null;
+
+function askDelete(id) {
+  const h = HABITS.find(x => x.id === id);
+  if(!h) return;
+  deletingHabitId = id;
+  document.getElementById("delete-habit-name").textContent = `"${h.label}" será removido do acompanhamento. Os dados históricos serão mantidos.`;
+  closeManageModal();
+  document.getElementById("modal-delete").classList.add("open");
+}
+
+function closeDeleteModal() {
+  document.getElementById("modal-delete").classList.remove("open");
+  deletingHabitId = null;
+}
+
+function confirmDelete() {
+  if(!deletingHabitId) return;
+  HABITS = HABITS.filter(h => h.id !== deletingHabitId);
+  saveHabits(); closeDeleteModal();
+  showToast("Hábito removido");
+  render();
 }
 
 // ── BACKUP ─────────────────────────────────────────────────────
 function exportData() {
-  const json = JSON.stringify(data, null, 2);
-  const blob = new Blob([json], {type:"application/json"});
+  const payload = { habits: HABITS, data };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement("a");
   a.href = url; a.download = "habitos-backup.json"; a.click();
   URL.revokeObjectURL(url);
+  localStorage.setItem("rodrigo_last_backup", Date.now().toString());
   showToast("Backup exportado ✓");
 }
 
@@ -694,13 +849,18 @@ function importData() {
   const input = document.createElement("input");
   input.type = "file"; input.accept = ".json";
   input.onchange = e => {
-    const file = e.target.files[0];
-    if(!file) return;
+    const file = e.target.files[0]; if(!file) return;
     const reader = new FileReader();
     reader.onload = ev => {
       try {
         const parsed = JSON.parse(ev.target.result);
-        data = parsed; save(); render();
+        // Support both old format (plain data) and new format {habits, data}
+        if(parsed.habits && parsed.data) {
+          HABITS = parsed.habits; data = parsed.data;
+        } else {
+          data = parsed;
+        }
+        save(); saveHabits(); render();
         showToast("Dados importados ✓");
       } catch { showToast("Arquivo inválido"); }
     };
@@ -717,49 +877,20 @@ function showToast(msg) {
 
 // ── BACKUP REMINDER ────────────────────────────────────────────
 function checkBackupReminder() {
-  const lastBackup = localStorage.getItem("rodrigo_last_backup");
-  const now = Date.now();
-  const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
-  if (!lastBackup || (now - parseInt(lastBackup)) > SEVEN_DAYS) {
-    setTimeout(() => showBackupModal(), 900);
+  const last = localStorage.getItem("rodrigo_last_backup");
+  if(!last || Date.now() - parseInt(last) > 7*24*60*60*1000) {
+    setTimeout(() => document.getElementById("backup-modal").classList.add("open"), 900);
   }
 }
-
-function showBackupModal() {
-  document.getElementById("backup-modal").style.display = "flex";
-}
-
 function closeBackupModal() {
-  document.getElementById("backup-modal").style.display = "none";
+  document.getElementById("backup-modal").classList.remove("open");
   localStorage.setItem("rodrigo_last_backup", Date.now().toString());
 }
-
-function exportAndClose() {
-  exportData();
-  closeBackupModal();
-}
+function exportAndClose() { exportData(); closeBackupModal(); }
 
 // ── INIT ───────────────────────────────────────────────────────
 render();
 checkBackupReminder();
 </script>
-
-<!-- BACKUP REMINDER MODAL -->
-<div id="backup-modal" style="display:none;position:fixed;inset:0;background:#0009;z-index:300;align-items:flex-end;justify-content:center;">
-  <div style="background:#131626;border:1px solid #252840;border-radius:20px 20px 0 0;padding:28px 22px 36px;width:100%;max-width:480px;">
-    <div style="font-size:28px;margin-bottom:10px;text-align:center">💾</div>
-    <div style="font-size:17px;text-align:center;margin-bottom:6px;">Hora do backup semanal</div>
-    <div style="font-size:13px;color:#6B7280;font-family:sans-serif;text-align:center;line-height:1.6;margin-bottom:22px;">
-      Faz mais de 7 dias desde o último backup.<br>Salve seus dados para não perder o histórico.
-    </div>
-    <button onclick="exportAndClose()" style="width:100%;padding:14px;background:#818CF8;border:none;border-radius:12px;color:#fff;font-size:15px;font-family:sans-serif;font-weight:600;margin-bottom:10px;">
-      ⬇ Fazer backup agora
-    </button>
-    <button onclick="closeBackupModal()" style="width:100%;padding:12px;background:transparent;border:1px solid #252840;border-radius:12px;color:#6B7280;font-size:14px;font-family:sans-serif;">
-      Lembrar semana que vem
-    </button>
-  </div>
-</div>
-
 </body>
 </html>
