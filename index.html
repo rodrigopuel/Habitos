@@ -228,6 +228,87 @@ input, select { font-family: sans-serif; }
 .btn-primary:active { background: #6366F1; }
 .btn-secondary { width: 100%; padding: 12px; background: transparent; border: 1px solid #252840; border-radius: 12px; color: #6B7280; font-size: 14px; font-family: sans-serif; }
 .btn-danger { width: 100%; padding: 14px; background: #7F1D1D; border: none; border-radius: 12px; color: #FCA5A5; font-size: 15px; font-family: sans-serif; font-weight: 600; margin-bottom: 10px; }
+
+/* ── KPI 30 DIAS ── */
+.kpi-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid #1E2235; }
+.kpi-title { font-size: 11px; color: #4B5563; font-family: sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+.kpi-geral { background: #111422; border: 1px solid #1E2235; border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; }
+.kpi-geral-ring { flex-shrink: 0; }
+.kpi-geral-info { flex: 1; }
+.kpi-geral-label { font-size: 12px; color: #6B7280; font-family: sans-serif; margin-bottom: 4px; }
+.kpi-geral-val { font-size: 28px; letter-spacing: -1px; }
+.kpi-geral-sub { font-size: 11px; color: #4B5563; font-family: sans-serif; margin-top: 2px; }
+.kpi-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.kpi-chip { background: #111422; border: 1px solid #1E2235; border-radius: 12px; padding: 11px 13px; }
+.kpi-chip-top { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; }
+.kpi-chip-icon { font-size: 15px; }
+.kpi-chip-name { font-size: 11px; color: #9CA3AF; font-family: sans-serif; line-height: 1.2; flex: 1; }
+.kpi-chip-pct { font-size: 16px; letter-spacing: -0.5px; margin-bottom: 5px; }
+.kpi-chip-bar-bg { height: 4px; border-radius: 2px; background: #1A1D2E; overflow: hidden; }
+.kpi-chip-bar { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+.kpi-chip-meta { font-size: 10px; color: #4B5563; font-family: sans-serif; margin-top: 4px; }
+/* ── MANHÃ ── */
+.morning-hero {
+  background: linear-gradient(160deg, #0F1528 0%, #131A2E 60%, #0E1122 100%);
+  border: 1px solid #1E2235; border-radius: 18px;
+  padding: 22px 20px 18px; margin-bottom: 16px;
+  position: relative; overflow: hidden;
+}
+.morning-hero::before {
+  content: '';
+  position: absolute; top: -30px; right: -20px;
+  width: 110px; height: 110px;
+  background: radial-gradient(circle, #F59E0B18 0%, transparent 70%);
+  border-radius: 50%;
+}
+.morning-date { font-size: 11px; color: #4B5563; font-family: sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.morning-greeting { font-size: 22px; letter-spacing: -0.5px; margin-bottom: 3px; }
+.morning-sub { font-size: 13px; color: #6B7280; font-family: sans-serif; }
+.morning-progress-wrap { margin-top: 14px; }
+.morning-progress-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.morning-progress-label { font-size: 11px; color: #6B7280; font-family: sans-serif; }
+.morning-progress-count { font-size: 11px; font-family: sans-serif; }
+.morning-bar-bg { height: 5px; border-radius: 3px; background: #1A1D2E; overflow: hidden; }
+.morning-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #F59E0B, #FBBF24); transition: width 0.5s ease; }
+
+.morning-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.morning-item {
+  display: flex; align-items: center; gap: 14px;
+  background: #0F1120; border: 1px solid #1E2235;
+  border-radius: 13px; padding: 14px 16px;
+  cursor: pointer; transition: all 0.2s;
+  user-select: none; -webkit-user-select: none;
+}
+.morning-item.done {
+  background: #111A11; border-color: #1A2E1A;
+}
+.morning-item.done .morning-item-label { color: #4B7A4B; text-decoration: line-through; text-decoration-color: #2D5A2D; }
+.morning-check {
+  width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+  border: 2px solid #2D3348; background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; font-size: 14px; font-weight: bold; color: #0C0F1A;
+}
+.morning-item.done .morning-check { background: #34D399; border-color: #34D399; }
+.morning-item-icon { font-size: 20px; flex-shrink: 0; }
+.morning-item-label { font-size: 15px; font-family: sans-serif; color: #D1D5DB; flex: 1; }
+
+.morning-reset {
+  width: 100%; padding: 11px; border-radius: 10px;
+  border: 1px solid #1E2235; background: transparent;
+  color: #4B5563; font-size: 12px; font-family: sans-serif;
+  margin-bottom: 16px; transition: all 0.2s;
+}
+.morning-reset:active { background: #1A1D2E; color: #9CA3AF; }
+
+.morning-quote {
+  background: #0F1120; border: 1px solid #1E2235;
+  border-left: 3px solid #F59E0B;
+  border-radius: 12px; padding: 16px 18px;
+  margin-bottom: 8px;
+}
+.morning-quote-text { font-size: 14px; color: #D1D5DB; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
+.morning-quote-author { font-size: 11px; color: #4B5563; font-family: sans-serif; letter-spacing: 1px; }
 </style>
 </head>
 <body>
@@ -249,6 +330,7 @@ input, select { font-family: sans-serif; }
 </div>
 <div id="view-weekly" class="view"><div id="weekly-content"></div></div>
 <div id="view-monthly" class="view"><div id="monthly-content"></div></div>
+<div id="view-morning" class="view"><div id="morning-content"></div></div>
 
 <!-- BOTTOM NAV -->
 <nav id="nav">
@@ -260,6 +342,9 @@ input, select { font-family: sans-serif; }
   </button>
   <button class="nav-btn" data-view="monthly" onclick="switchView('monthly')">
     <span class="nav-icon">📊</span>Mês
+  </button>
+  <button class="nav-btn" data-view="morning" onclick="switchView('morning')">
+    <span class="nav-icon">🌅</span>Manhã
   </button>
 </nav>
 
@@ -376,22 +461,53 @@ const MONTHS_SH  = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out",
 let data   = {};
 let HABITS = [];
 
+const HABITS_V2 = [
+  { id:"acordar",     icon:"☀️", label:"Acordar 6h30", color:"#F59E0B", short:"6h30",  goal:5 },
+  { id:"leitura",     icon:"📖", label:"Leitura",      color:"#818CF8", short:"Leit",  goal:5 },
+  { id:"sono",        icon:"🌙", label:"Sono 7–7,5h", color:"#38BDF8", short:"Sono",  goal:5 },
+  { id:"tenis",       icon:"🎾", label:"Tênis",        color:"#34D399", short:"Tênis", goal:4 },
+  { id:"academia",    icon:"🏋️", label:"Academia",     color:"#FB923C", short:"Acad",  goal:2 },
+  { id:"corrida",     icon:"🏃", label:"Corrida",      color:"#E879F9", short:"Corr",  goal:1 },
+  { id:"alimentacao", icon:"🥗", label:"Alimentação",  color:"#F472B6", short:"Alim",  goal:5 },
+];
+
+function needsMigration(habits) {
+  if (!habits || !habits.length) return true;
+  const wrongGoal = habits.some(h =>
+    (h.id === "acordar"     && h.goal !== 5) ||
+    (h.id === "leitura"     && h.goal !== 5) ||
+    (h.id === "sono"        && h.goal !== 5) ||
+    (h.id === "tenis"       && h.goal !== 4) ||
+    (h.id === "academia"    && h.goal !== 2) ||
+    (h.id === "corrida"     && h.goal !== 1) ||
+    (h.id === "alimentacao" && h.goal !== 5) ||
+    h.id === "treino"
+  );
+  return wrongGoal;
+}
+
 function loadState() {
   try { data   = JSON.parse(localStorage.getItem("rodrigo_habitos")  || "{}"); } catch { data = {}; }
   try { HABITS = JSON.parse(localStorage.getItem("rodrigo_habits_cfg") || "null"); } catch {}
-  if (!HABITS || !HABITS.length) {
-    HABITS = [
-      { id:"acordar",     icon:"☀️", label:"Acordar 6h",  color:"#F59E0B", short:"6h",    goal:7 },
-      { id:"leitura",     icon:"📖", label:"Leitura",      color:"#818CF8", short:"Leit",  goal:6 },
-      { id:"sono",        icon:"🌙", label:"Sono 7–7,5h", color:"#38BDF8", short:"Sono",  goal:6 },
-      { id:"tenis",       icon:"🎾", label:"Tênis",        color:"#34D399", short:"Tênis", goal:3 },
-      { id:"academia",    icon:"🏋️", label:"Academia",     color:"#FB923C", short:"Acad",  goal:3 },
-      { id:"corrida",     icon:"🏃", label:"Corrida",      color:"#E879F9", short:"Corr",  goal:2 },
-      { id:"alimentacao", icon:"🥗", label:"Alimentação",  color:"#F472B6", short:"Alim",  goal:6 },
-    ];
+
+  if (needsMigration(HABITS)) {
+    // Se tinha "treino" unificado, desfaz: academia e corrida voltam separados
+    // O histórico de "treino" vira "academia" para não perder dados
+    if (HABITS && HABITS.some(h => h.id === "treino")) {
+      Object.keys(data).forEach(date => {
+        if (data[date] && data[date].treino) {
+          data[date].academia = true;
+          delete data[date].treino;
+        }
+      });
+      save();
+    }
+    HABITS = HABITS_V2;
     saveHabits();
   }
 }
+
+
 
 function saveHabits() { localStorage.setItem("rodrigo_habits_cfg", JSON.stringify(HABITS)); }
 function save()       { localStorage.setItem("rodrigo_habitos",    JSON.stringify(data));   }
@@ -404,8 +520,13 @@ let monthOffset  = 0;
 let currentView  = "daily";
 
 // ── HELPERS ────────────────────────────────────────────────────
-function toKey(d)     { return d.toISOString().split("T")[0]; }
-function todayKey()   { return toKey(new Date()); }
+function toKey(d) {
+  // Always format date in São Paulo timezone
+  return d.toLocaleDateString("sv-SE", { timeZone: "America/Sao_Paulo" });
+}
+function todayKey() {
+  return new Date().toLocaleDateString("sv-SE", { timeZone: "America/Sao_Paulo" });
+}
 function isChecked(hid, date) { return !!(data[date] && data[date][hid]); }
 
 function toggle(hid, date) {
@@ -494,8 +615,9 @@ function renderDaily() {
         <div class="day-title">${isToday?"Hoje":DAYS_PT[dateObj.getDay()]}</div>
         <div class="day-sub">${dateObj.getDate()} de ${MONTHS_PT[dateObj.getMonth()]}</div>
       </div>
-      ${ring(pct, 56, 6, pct===100?"#F59E0B":"#34D399")}
-    </div>${habitsHtml}`;
+    </div>
+    ${habitsHtml}
+    ${buildKPI30()}`;
 }
 
 // ── RENDER: WEEKLY ─────────────────────────────────────────────
@@ -667,7 +789,547 @@ function renderMonthly() {
     </div>`;
 }
 
-// ── NAVIGATION ─────────────────────────────────────────────────
+// ── KPI 30 DIAS ───────────────────────────────────────────────
+// Metas fixas do KPI (independente das metas do tracker diário)
+const KPI_METAS = [
+  { ids: ["acordar"],              icon: "☀️",  label: "Acordar 6h30", color: "#F59E0B", metaSem: 5 },
+  { ids: ["leitura"],              icon: "📖",  label: "Leitura",       color: "#818CF8", metaSem: 5 },
+  { ids: ["sono"],                 icon: "🌙",  label: "Sono 7–7,5h",  color: "#38BDF8", metaSem: 5 },
+  { ids: ["tenis"],                icon: "🎾",  label: "Tênis",         color: "#34D399", metaSem: 4 },
+  { ids: ["academia", "corrida"],  icon: "🏋️",  label: "Treino",        color: "#FB923C", metaSem: 3 },
+  { ids: ["alimentacao"],          icon: "🥗",  label: "Alimentação",   color: "#F472B6", metaSem: 5 },
+];
+
+function buildKPI30() {
+  const today = todayKey();
+  // Gera array dos últimos 30 dias (inclusive hoje)
+  const days = [];
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const k = d.toLocaleDateString("sv-SE", { timeZone: "America/Sao_Paulo" });
+    if (k <= today) days.push(k);
+  }
+
+  // Divide os 30 dias em semanas completas (blocos de 7) do mais recente para o mais antigo
+  // Para calcular: quantas semanas (parciais ou completas) há em 30 dias
+  // Usamos a lógica de: para cada bloco de 7 dias, a meta é metaSem
+  // Semanas parciais: proporção da meta
+  const totalDias = days.length; // ~30
+  const semanasCompletas = Math.floor(totalDias / 7);
+  const diasSobra = totalDias % 7;
+
+  // Para cada meta do KPI, calcula % de aderência nos 30 dias
+  const kpiResults = KPI_METAS.map(meta => {
+    // Conta ocorrências (se fizer os dois no mesmo dia, conta dobrado)
+    const marcados = days.reduce((sum, d) => sum + meta.ids.filter(id => isChecked(id, d)).length, 0);
+
+    // Meta proporcional: semanas completas * metaSem + dias sobra * (metaSem/7)
+    const metaTotal = semanasCompletas * meta.metaSem + diasSobra * (meta.metaSem / 7);
+    const pct = metaTotal > 0 ? Math.min(100, Math.round(marcados / metaTotal * 100)) : 0;
+    return { ...meta, marcados, metaTotal: Math.round(metaTotal), pct };
+  });
+
+  // % geral: média dos % individuais
+  const pctGeral = Math.round(kpiResults.reduce((s, r) => s + r.pct, 0) / kpiResults.length);
+  const corGeral = pctGeral >= 80 ? "#34D399" : pctGeral >= 55 ? "#F59E0B" : "#F472B6";
+
+  // Mini anel SVG para o KPI geral
+  const sz = 52, sw = 5, r = (sz - sw) / 2;
+  const circ = 2 * Math.PI * r;
+  const fill = pctGeral / 100 * circ;
+  const cx = sz / 2, cy = sz / 2;
+  const anelSvg = `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1E2235" stroke-width="${sw}"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${corGeral}" stroke-width="${sw}"
+      stroke-dasharray="${fill} ${circ}" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>
+  </svg>`;
+
+  const chips = kpiResults.map(r => {
+    const cor = r.pct >= 80 ? "#34D399" : r.pct >= 55 ? r.color : "#6B7280";
+    return `<div class="kpi-chip">
+      <div class="kpi-chip-top">
+        <span class="kpi-chip-icon">${r.icon}</span>
+        <span class="kpi-chip-name">${r.label}</span>
+      </div>
+      <div class="kpi-chip-pct" style="color:${cor}">${r.pct}%</div>
+      <div class="kpi-chip-bar-bg"><div class="kpi-chip-bar" style="width:${r.pct}%;background:${cor}"></div></div>
+      <div class="kpi-chip-meta">${r.marcados}/${r.metaTotal} dias · meta ${r.metaSem}×/sem</div>
+    </div>`;
+  }).join("");
+
+  return `<div class="kpi-section">
+    <div class="kpi-title">Aderência · últimos 30 dias</div>
+    <div class="kpi-geral">
+      <div class="kpi-geral-ring">${anelSvg}</div>
+      <div class="kpi-geral-info">
+        <div class="kpi-geral-label">Resultado geral</div>
+        <div class="kpi-geral-val" style="color:${corGeral}">${pctGeral}%</div>
+        <div class="kpi-geral-sub">média dos 6 hábitos</div>
+      </div>
+    </div>
+    <div class="kpi-chips">${chips}</div>
+  </div>`;
+}
+
+// ── MANHÃ ──────────────────────────────────────────────────────
+const MORNING_ITEMS = [
+  { id: "m_gabriel",     icon: "🍼", label: "Mama Gabriel" },
+  { id: "m_remedios",    icon: "💊", label: "Remédios" },
+  { id: "m_racao",       icon: "🐕", label: "Ração Getúlio" },
+  { id: "m_plantas",     icon: "🌿", label: "Regar plantas" },
+  { id: "m_cafe",        icon: "☕", label: "Café da manhã" },
+  { id: "m_mochila",     icon: "🎒", label: "Mochila de treino" },
+  { id: "m_comida",      icon: "🥡", label: "Comida escritório" },
+  { id: "m_passarinhos", icon: "🐦", label: "Alimentação e limpeza passarinhos" },
+  { id: "m_coco",        icon: "🐾", label: "Cocô Getúlio" },
+];
+
+const FRASES = [
+  { texto: 'A disciplina é a ponte entre metas e realizações.', autor: 'Jim Rohn' },
+  { texto: 'Pequenos hábitos diários constroem grandes resultados.', autor: 'James Clear' },
+  { texto: 'Você não precisa ser extremo. Precisa ser consistente.', autor: 'Desconhecido' },
+  { texto: 'O sucesso é a soma de pequenos esforços repetidos dia após dia.', autor: 'Robert Collier' },
+  { texto: 'Cuide do seu corpo. É o único lugar onde você tem que viver.', autor: 'Jim Rohn' },
+  { texto: 'A manhã que você conquista define o dia que você terá.', autor: 'Hal Elrod' },
+  { texto: 'Não espere pela motivação. Crie o hábito e a motivação virá.', autor: 'Desconhecido' },
+  { texto: 'Cada manhã traz uma nova chance de fazer melhor.', autor: 'Desconhecido' },
+  { texto: 'Sua rotina matinal é o seu ritual de vitória.', autor: 'Desconhecido' },
+  { texto: 'O que você faz todos os dias importa mais do que o que você faz de vez em quando.', autor: 'Gretchen Rubin' },
+  { texto: 'A consistência supera o talento quando o talento não é consistente.', autor: 'Desconhecido' },
+  { texto: 'Acorde com determinação. Vá dormir com satisfação.', autor: 'Desconhecido' },
+  { texto: 'Sua vida hoje é o resultado dos seus hábitos de ontem.', autor: 'Desconhecido' },
+  { texto: 'As manhãs são oportunidades que chegam embrulhadas em tempo.', autor: 'Desconhecido' },
+  { texto: 'Vença a manhã, vença o dia.', autor: 'Tim Ferriss' },
+  { texto: 'A autodisciplina começa com a vitória sobre si mesmo.', autor: 'Desconhecido' },
+  { texto: 'Construa sua vida de propósito, não de circunstância.', autor: 'Desconhecido' },
+  { texto: 'Cada dia é uma nova oportunidade de crescer.', autor: 'Desconhecido' },
+  { texto: 'O hábito facilita. A consistência transforma.', autor: 'Desconhecido' },
+  { texto: 'Não existe atalho para um lugar que vale a pena chegar.', autor: 'Beverly Sills' },
+  { texto: 'O esforço de hoje é o orgulho de amanhã.', autor: 'Desconhecido' },
+  { texto: 'Comece onde você está. Use o que você tem. Faça o que puder.', autor: 'Arthur Ashe' },
+  { texto: 'Uma rotina sólida te leva mais longe do que um esforço esporádico.', autor: 'Desconhecido' },
+  { texto: 'Você é o que você faz repetidamente.', autor: 'Aristóteles' },
+  { texto: 'A grandeza é uma função do foco e da consistência.', autor: 'John C. Maxwell' },
+  { texto: 'A melhor versão de você está escondida nos seus hábitos.', autor: 'Desconhecido' },
+  { texto: 'Sua rotina matinal é o alicerce do seu dia.', autor: 'Desconhecido' },
+  { texto: 'Quem controla a manhã, controla o dia.', autor: 'Desconhecido' },
+  { texto: 'Não é sobre perfeição, é sobre progresso.', autor: 'Desconhecido' },
+  { texto: 'Um passo de cada vez, mas nunca pare de caminhar.', autor: 'Desconhecido' },
+  { texto: 'Transforme suas intenções em ações. Suas ações em hábitos.', autor: 'Desconhecido' },
+  { texto: 'O segredo do seu futuro está escondido na sua rotina diária.', autor: 'Mike Murdock' },
+  { texto: 'Motivação te faz começar. Hábito te faz continuar.', autor: 'Jim Ryun' },
+  { texto: 'Não conte os dias. Faça os dias contarem.', autor: 'Muhammad Ali' },
+  { texto: 'A vitória pertence ao mais perseverante.', autor: 'Napoleão Bonaparte' },
+  { texto: 'Você não precisa ser grande para começar, mas precisa começar para ser grande.', autor: 'Zig Ziglar' },
+  { texto: 'O corpo consegue quase tudo. É a mente que precisa ser convencida.', autor: 'Desconhecido' },
+  { texto: 'Acordar cedo é o primeiro ato de liderança do dia.', autor: 'Desconhecido' },
+  { texto: 'Faça hoje o que os outros não querem. Viva amanhã o que os outros não podem.', autor: 'Desconhecido' },
+  { texto: 'A força não vem de vencer. Vem de lutar.', autor: 'Mahatma Gandhi' },
+  { texto: 'Cada rep, cada passo, cada escolha saudável te aproxima de quem você quer ser.', autor: 'Desconhecido' },
+  { texto: 'O sucesso é locar-se com a excelência na simplicidade do dia a dia.', autor: 'Desconhecido' },
+  { texto: 'Disciplina é escolher entre o que você quer agora e o que você quer mais.', autor: 'Abraham Lincoln' },
+  { texto: 'A saúde é a maior riqueza.', autor: 'Virgílio' },
+  { texto: 'Sonhos não funcionam a menos que você trabalhe.', autor: 'John C. Maxwell' },
+  { texto: 'Seja tão bom que não possam te ignorar.', autor: 'Steve Martin' },
+  { texto: 'O único jeito de fazer um bom trabalho é amar o que você faz.', autor: 'Steve Jobs' },
+  { texto: 'Não desista do que você realmente quer por algo que você quer agora.', autor: 'Desconhecido' },
+  { texto: 'Cada amanhecer traz uma nova página em branco. Escreva algo bonito.', autor: 'Desconhecido' },
+  { texto: 'A jornada de mil milhas começa com um único passo.', autor: 'Lao Tsé' },
+  { texto: 'Quem tem saúde tem esperança. Quem tem esperança tem tudo.', autor: 'Provérbio árabe' },
+  { texto: 'O homem que move montanhas começa carregando pequenas pedras.', autor: 'Confúcio' },
+  { texto: 'Não é a montanha que conquistamos, mas a nós mesmos.', autor: 'Edmund Hillary' },
+  { texto: 'A mente é tudo. Você se torna o que você pensa.', autor: 'Buda' },
+  { texto: 'Você só falha quando para de tentar.', autor: 'Albert Einstein' },
+  { texto: 'O sucesso é ir de fracasso em fracasso sem perder o entusiasmo.', autor: 'Winston Churchill' },
+  { texto: 'Tudo parece impossível até que seja feito.', autor: 'Nelson Mandela' },
+  { texto: 'A diferença entre o possível e o impossível está na vontade.', autor: 'Tommy Lasorda' },
+  { texto: 'Invista em si mesmo. Seu retorno é garantido.', autor: 'Desconhecido' },
+  { texto: 'Cuide do seu corpo como se fosse viver para sempre.', autor: 'Desconhecido' },
+  { texto: 'Bons hábitos são tão difíceis de se criar quanto fáceis de se viver com eles.', autor: 'Desconhecido' },
+  { texto: 'Maus hábitos são fáceis de criar e difíceis de viver com eles.', autor: 'Desconhecido' },
+  { texto: 'O maior de todos os remédios é o descanso e o jejum.', autor: 'Benjamim Franklin' },
+  { texto: 'Não existe pilula mágica. Existe esforço diário.', autor: 'Desconhecido' },
+  { texto: 'A persistência é o caminho do êxito.', autor: 'Charles Chaplin' },
+  { texto: 'Quem sabe focar no que é essencial, conquista o extraordinário.', autor: 'Greg McKeown' },
+  { texto: 'Você tem exatamente o tempo que todos os grandes homens tiveram.', autor: 'Desconhecido' },
+  { texto: 'A disciplina é a alma de um exército. Ela faz pequenos contingentes poderosos.', autor: 'George Washington' },
+  { texto: 'Primeiro forme o hábito, depois o hábito te forma.', autor: 'Desconhecido' },
+  { texto: 'Cada dia que você treina, você investe no seu eu futuro.', autor: 'Desconhecido' },
+  { texto: 'O que não te desafia não te transforma.', autor: 'Desconhecido' },
+  { texto: 'Ser saudável não é um destino. É um modo de viajar.', autor: 'Desconhecido' },
+  { texto: 'A mudança acontece quando a dor de ficar igual supera a dor de mudar.', autor: 'Tony Robbins' },
+  { texto: 'Sua energia de manhã define a qualidade do seu dia.', autor: 'Desconhecido' },
+  { texto: 'Não espere por uma crise para descobrir o valor de uma boa rotina.', autor: 'Desconhecido' },
+  { texto: 'O sucesso é construído antes do nascer do sol.', autor: 'Desconhecido' },
+  { texto: 'Quanto mais você suar no treino, menos sangrará na batalha.', autor: 'Provérbio militar' },
+  { texto: 'O que você faz consistentemente é mais importante do que o que você faz ocasionalmente.', autor: 'Desconhecido' },
+  { texto: 'A autodisciplina é a raiz de toda ambição.', autor: 'Desconhecido' },
+  { texto: 'Levantar cedo é uma forma de respeitar o próprio tempo.', autor: 'Desconhecido' },
+  { texto: 'Não procrastine sua vida.', autor: 'Desconhecido' },
+  { texto: 'A excelência não é um ato, mas um hábito.', autor: 'Aristóteles' },
+  { texto: 'Coloque-se em primeiro lugar. Não por egoísmo, mas por necessidade.', autor: 'Desconhecido' },
+  { texto: 'Você é o CEO do seu corpo.', autor: 'Desconhecido' },
+  { texto: 'O sono é o melhor suplemento que existe.', autor: 'Desconhecido' },
+  { texto: 'Alimentar-se bem é um ato de amor próprio.', autor: 'Desconhecido' },
+  { texto: 'Sua mente segue seu corpo. Mova-se.', autor: 'Desconhecido' },
+  { texto: 'Um bom café da manhã é o prólogo de um bom dia.', autor: 'Desconhecido' },
+  { texto: 'A gratidão transforma o que temos em suficiente.', autor: 'Melody Beattie' },
+  { texto: 'Comece o dia com intenção, não com urgência.', autor: 'Desconhecido' },
+  { texto: 'Cada check na lista é uma vitória pequena. Celebre-a.', autor: 'Desconhecido' },
+  { texto: 'Rotinas são a estrutura invisível dos dias produtivos.', autor: 'Desconhecido' },
+  { texto: 'Faça por hábito o que outros fazem por esforço.', autor: 'Desconhecido' },
+  { texto: 'O presente é o único tempo em que você pode agir.', autor: 'Desconhecido' },
+  { texto: 'Foque no processo, não apenas no resultado.', autor: 'Desconhecido' },
+  { texto: 'Cada manhã é uma segunda chance.', autor: 'Desconhecido' },
+  { texto: 'O corpo humano é a melhor imagem da alma humana.', autor: 'Ludwig Wittgenstein' },
+  { texto: 'Correr é a metáfora perfeita para a vida: você obtém o que coloca.', autor: 'Oprah Winfrey' },
+  { texto: 'O tênis ensina que cada ponto começa do zero.', autor: 'Desconhecido' },
+  { texto: 'Treine duro, viva fácil. Treine fácil, viva difícil.', autor: 'Desconhecido' },
+  { texto: 'A disciplina hoje é a liberdade amanhã.', autor: 'Desconhecido' },
+  { texto: 'Você não precisa de mais tempo, precisa de mais foco.', autor: 'Desconhecido' },
+  { texto: 'Cuide de quem você ama começando por cuidar de si mesmo.', autor: 'Desconhecido' },
+  { texto: 'Ser pai é o treino mais importante da sua vida.', autor: 'Desconhecido' },
+  { texto: 'O exemplo que você dá vale mais que qualquer conselho.', autor: 'Desconhecido' },
+  { texto: 'Uma manhã organizada é um presente para a sua família.', autor: 'Desconhecido' },
+  { texto: 'Presença plena é o melhor presente que você pode dar.', autor: 'Desconhecido' },
+  { texto: 'Pequenas vitórias pela manhã criam grandes conquistas ao longo da vida.', autor: 'Desconhecido' },
+  { texto: 'A rotina não limita — ela liberta.', autor: 'Desconhecido' },
+  { texto: 'Faça do movimento uma celebração, não uma punição.', autor: 'Desconhecido' },
+  { texto: 'Seu corpo agradece cada vez que você o move.', autor: 'Desconhecido' },
+  { texto: 'A hidratação é o hábito mais simples e mais negligenciado.', autor: 'Desconhecido' },
+  { texto: 'Tudo que é bom na vida requer esforço repetido.', autor: 'Desconhecido' },
+  { texto: 'Não existe talento sem trabalho. Existe trabalho sem talento aparente.', autor: 'Desconhecido' },
+  { texto: 'O hábito de ler constrói a mente que nenhuma escola consegue substituir.', autor: 'Desconhecido' },
+  { texto: 'Leia um pouco todo dia. A soma é impressionante.', autor: 'Desconhecido' },
+  { texto: 'Uma página por dia é um livro por mês.', autor: 'Desconhecido' },
+  { texto: 'Os livros são espelhos. Só vemos neles o que já temos dentro.', autor: 'Carlos Ruiz Zafón' },
+  { texto: 'Quem lê vive mil vidas antes de morrer.', autor: 'George R.R. Martin' },
+  { texto: 'Dormir bem não é preguiça. É estratégia.', autor: 'Desconhecido' },
+  { texto: 'O sono repara o que o esforço desgasta.', autor: 'Desconhecido' },
+  { texto: 'Sete horas de sono valem mais que sete cafés.', autor: 'Desconhecido' },
+  { texto: 'A qualidade do seu amanhã começa na hora que você dorme hoje.', autor: 'Desconhecido' },
+  { texto: 'Recuperação é parte do treino, não pausa dele.', autor: 'Desconhecido' },
+  { texto: 'Alimentação é combustível. Escolha o premium.', autor: 'Desconhecido' },
+  { texto: 'Você come o que você é. Seja intencional.', autor: 'Desconhecido' },
+  { texto: 'Comer bem não é dieta. É estilo de vida.', autor: 'Desconhecido' },
+  { texto: 'O prato colorido é a medicina preventiva mais gostosa.', autor: 'Desconhecido' },
+  { texto: 'Seu intestino é seu segundo cérebro. Alimente-o bem.', autor: 'Desconhecido' },
+  { texto: 'A água é o único remédio que funciona para quase tudo.', autor: 'Desconhecido' },
+  { texto: 'Trinta minutos de movimento transformam o humor do dia inteiro.', autor: 'Desconhecido' },
+  { texto: 'Não existe exercício ruim. Existe não fazer exercício.', autor: 'Desconhecido' },
+  { texto: 'O suor é o seu corpo agradecendo.', autor: 'Desconhecido' },
+  { texto: 'Após o treino, tudo parece mais leve.', autor: 'Desconhecido' },
+  { texto: 'O desconforto do treino é temporário. O arrependimento de não treinar é longo.', autor: 'Desconhecido' },
+  { texto: 'Mova-se com propósito. Descanse com intenção.', autor: 'Desconhecido' },
+  { texto: 'A força que você constrói na academia é metáfora para a vida.', autor: 'Desconhecido' },
+  { texto: 'Cada quilômetro corrido é um argumento contra a desistência.', autor: 'Desconhecido' },
+  { texto: 'Na corrida, você compete apenas consigo mesmo.', autor: 'Desconhecido' },
+  { texto: 'O tênis te ensina a ajustar a estratégia ponto a ponto.', autor: 'Desconhecido' },
+  { texto: 'Jogar tênis é praticar tomada de decisão em alta velocidade.', autor: 'Desconhecido' },
+  { texto: 'No esporte, como na vida, o que importa é como você responde ao erro.', autor: 'Desconhecido' },
+  { texto: 'A raquete não mente. O placar não mente. O esforço não mente.', autor: 'Desconhecido' },
+  { texto: 'Ganhar é bom. Evoluir é melhor.', autor: 'Desconhecido' },
+  { texto: 'O campo de tênis é onde a cabeça e o corpo se encontram.', autor: 'Desconhecido' },
+  { texto: 'Confie no processo mesmo quando não vê o resultado.', autor: 'Desconhecido' },
+  { texto: 'Os melhores atletas não são os mais talentosos. São os mais consistentes.', autor: 'Desconhecido' },
+  { texto: 'Treinar a mente é tão importante quanto treinar o corpo.', autor: 'Desconhecido' },
+  { texto: 'O que você tolera, você perpetua. O que você pratica, você se torna.', autor: 'Desconhecido' },
+  { texto: 'Seja o tipo de pessoa que não precisa de motivação para agir.', autor: 'Desconhecido' },
+  { texto: 'A vida recompensa a ação, não a intenção.', autor: 'Desconhecido' },
+  { texto: 'Intenção sem ação é ilusão.', autor: 'Desconhecido' },
+  { texto: 'O sucesso ama a velocidade. A excelência ama a repetição.', autor: 'Desconhecido' },
+  { texto: 'Um dia ruim de treino é melhor que um dia sem treino.', autor: 'Desconhecido' },
+  { texto: 'O progresso, não a perfeição, é o objetivo.', autor: 'Desconhecido' },
+  { texto: 'Não compare seu capítulo 1 com o capítulo 20 de outra pessoa.', autor: 'Desconhecido' },
+  { texto: 'A comparação é o ladrão da alegria.', autor: 'Theodore Roosevelt' },
+  { texto: 'Seu único concorrente é quem você foi ontem.', autor: 'Desconhecido' },
+  { texto: 'Celebre cada avanço, por menor que seja.', autor: 'Desconhecido' },
+  { texto: 'A autocompaixão não é fraqueza. É combustível para continuar.', autor: 'Desconhecido' },
+  { texto: 'Erre. Aprenda. Ajuste. Repita.', autor: 'Desconhecido' },
+  { texto: 'O fracasso é apenas o preço que se paga pelo sucesso.', autor: 'Desconhecido' },
+  { texto: 'Cada queda é uma aula. Cada levantada é uma escolha.', autor: 'Desconhecido' },
+  { texto: 'Resiliência é a habilidade de cair sete vezes e levantar oito.', autor: 'Provérbio japonês' },
+  { texto: 'O que não mata fortalece.', autor: 'Friedrich Nietzsche' },
+  { texto: 'A adversidade revela o caráter que a prosperidade esconde.', autor: 'Horácio' },
+  { texto: 'Seja grato pelo que você tem enquanto trabalha pelo que quer.', autor: 'Desconhecido' },
+  { texto: 'A gratidão diária é o mais poderoso antídepressivo natural.', autor: 'Desconhecido' },
+  { texto: 'Comece cada manhã com um coração grato.', autor: 'Desconhecido' },
+  { texto: 'O que você aprecia, aprecia.', autor: 'Desconhecido' },
+  { texto: 'Felicidade não é ter tudo. É apreciar o que se tem.', autor: 'Desconhecido' },
+  { texto: 'A paz começa com uma boa manhã.', autor: 'Desconhecido' },
+  { texto: 'Serenidade não é ausência de tempestade. É calma dentro dela.', autor: 'Desconhecido' },
+  { texto: 'A meditação é o treino da mente que poucos fazem.', autor: 'Desconhecido' },
+  { texto: 'Respire fundo. Você está exatamente onde precisa estar.', autor: 'Desconhecido' },
+  { texto: 'A pressa é inimiga da profundidade.', autor: 'Desconhecido' },
+  { texto: 'Faça menos, mas com mais presença.', autor: 'Desconhecido' },
+  { texto: 'Atenção plena é o superpoder do século XXI.', autor: 'Desconhecido' },
+  { texto: 'O silêncio da manhã é o melhor ambiente para pensar com clareza.', autor: 'Desconhecido' },
+  { texto: 'Uma mente clara começa com uma manhã tranquila.', autor: 'Desconhecido' },
+  { texto: 'Escreva seus objetivos todo dia. A clareza transforma.', autor: 'Desconhecido' },
+  { texto: 'O que está claro na mente, manifesta-se na vida.', autor: 'Desconhecido' },
+  { texto: 'Visualize o sucesso antes de executá-lo.', autor: 'Desconhecido' },
+  { texto: 'A imaginação é o ensaio do futuro.', autor: 'Desconhecido' },
+  { texto: 'Seus pensamentos da manhã moldam suas ações do dia.', autor: 'Desconhecido' },
+  { texto: 'Pense grande. Comece pequeno. Aja agora.', autor: 'Desconhecido' },
+  { texto: 'Uma ideia sem execução é apenas um sonho.', autor: 'Desconhecido' },
+  { texto: 'Execute primeiro. Perfeite depois.', autor: 'Desconhecido' },
+  { texto: 'Feito é melhor que perfeito.', autor: 'Sheryl Sandberg' },
+  { texto: 'A procrastinação é o assassino silencioso dos sonhos.', autor: 'Desconhecido' },
+  { texto: 'Faça agora o que o seu eu futuro agradecerá.', autor: 'Desconhecido' },
+  { texto: 'Cada tarefa concluída é uma promessa cumprida consigo mesmo.', autor: 'Desconhecido' },
+  { texto: 'A confiança vem de cumprir as promessas que você faz a si mesmo.', autor: 'Desconhecido' },
+  { texto: 'Seja alguém em quem você mesmo confia.', autor: 'Desconhecido' },
+  { texto: 'Integridade é fazer a coisa certa mesmo quando ninguém está olhando.', autor: 'C.S. Lewis' },
+  { texto: 'O caráter é revelado na rotina, não nos momentos extraordinários.', autor: 'Desconhecido' },
+  { texto: 'Seja a pessoa que seus filhos orgulharão de ter como pai.', autor: 'Desconhecido' },
+  { texto: 'Lidere pelo exemplo. Sempre.', autor: 'Desconhecido' },
+  { texto: 'O maior presente que você pode dar à sua família é sua saúde.', autor: 'Desconhecido' },
+  { texto: 'Um pai saudável é um pai presente.', autor: 'Desconhecido' },
+  { texto: 'Cuide de você para poder cuidar de quem você ama.', autor: 'Desconhecido' },
+  { texto: 'Energia é a moeda da vida. Invista bem.', autor: 'Desconhecido' },
+  { texto: 'Gerencie sua energia, não apenas seu tempo.', autor: 'Jim Loehr' },
+  { texto: 'Alta performance começa com alta recuperação.', autor: 'Desconhecido' },
+  { texto: 'O equilíbrio não é um estado fixo. É uma prática diária.', autor: 'Desconhecido' },
+  { texto: 'Sucesso sem saúde é pobreza disfarçada.', autor: 'Desconhecido' },
+  { texto: 'Não existe riqueza que compre de volta anos de saúde negligenciada.', autor: 'Desconhecido' },
+  { texto: 'Invista em preventivo para não pagar em corretivo.', autor: 'Desconhecido' },
+  { texto: 'A prevenção é o luxo que todos podem ter.', autor: 'Desconhecido' },
+  { texto: 'Seu corpo é o veículo da sua missão. Mantenha-o bem.', autor: 'Desconhecido' },
+  { texto: 'Cada escolha saudável é um voto pelo seu eu futuro.', autor: 'James Clear' },
+  { texto: 'Construa hábitos que te sirvam por décadas.', autor: 'Desconhecido' },
+  { texto: 'Pense em anos. Planeje em meses. Execute em dias.', autor: 'Desconhecido' },
+  { texto: 'O jogo longo sempre vence o jogo curto.', autor: 'Desconhecido' },
+  { texto: 'Paciência é a arma mais subestimada do sucesso.', autor: 'Desconhecido' },
+  { texto: 'Os resultados que você quer amanhã dependem das decisões de hoje.', autor: 'Desconhecido' },
+  { texto: 'Não existe grande salto sem pequenos passos diários.', autor: 'Desconhecido' },
+  { texto: 'O tempo é neutro. O que você faz com ele não é.', autor: 'Desconhecido' },
+  { texto: 'Use bem as manhãs e as manhãs usarão bem de você.', autor: 'Desconhecido' },
+  { texto: 'A produtividade não é sobre fazer mais. É sobre fazer o que importa.', autor: 'Desconhecido' },
+  { texto: 'Elimine o que drena. Proteja o que energiza.', autor: 'Desconhecido' },
+  { texto: 'Diga não ao trivial para dizer sim ao essencial.', autor: 'Greg McKeown' },
+  { texto: 'A clareza de prioridades é o fundamento da paz mental.', autor: 'Desconhecido' },
+  { texto: 'Quando tudo é prioridade, nada é prioridade.', autor: 'Desconhecido' },
+  { texto: 'Faça uma coisa por vez. Faça bem feito.', autor: 'Desconhecido' },
+  { texto: 'O multitasking é o inimigo da profundidade.', autor: 'Cal Newport' },
+  { texto: 'Trabalho profundo é a habilidade mais rara e mais valiosa.', autor: 'Cal Newport' },
+  { texto: 'Concentração é a nova inteligência.', autor: 'Desconhecido' },
+  { texto: 'Proteja seu tempo de manhã como protege seu dinheiro.', autor: 'Desconhecido' },
+  { texto: 'As primeiras horas do dia são as mais valiosas.', autor: 'Desconhecido' },
+  { texto: 'O que você faz antes das 9h define o que acontece depois.', autor: 'Desconhecido' },
+  { texto: 'Rituais matinais são o segredo dos líderes de alta performance.', autor: 'Desconhecido' },
+  { texto: 'A manhã é sua. Use-a para você antes de usá-la para os outros.', autor: 'Desconhecido' },
+  { texto: 'Construa algo todo dia, mesmo que seja pequeno.', autor: 'Desconhecido' },
+  { texto: 'O trabalho consistente cria o que a inspiração sozinha nunca criaria.', autor: 'Desconhecido' },
+  { texto: 'Gênio é um por cento de inspiração e noventa e nove por cento de transpiração.', autor: 'Thomas Edison' },
+  { texto: 'Ninguém ficou forte sem levantar pesos. Ninguém ficou sábio sem estudar.', autor: 'Desconhecido' },
+  { texto: 'Aprendizado sem prática é teoria. Prática sem aprendizado é repetição vazia.', autor: 'Desconhecido' },
+  { texto: 'Cada dia é uma aula. Você é o aluno e o professor.', autor: 'Desconhecido' },
+  { texto: 'Curiosidade é o combustível do crescimento.', autor: 'Desconhecido' },
+  { texto: 'Aprenda algo novo todo dia. Mesmo que seja pequeno.', autor: 'Desconhecido' },
+  { texto: 'O aprendizado constante é a única vantagem competitiva sustentável.', autor: 'Desconhecido' },
+  { texto: 'Invista em conhecimento. Ninguém pode te roubar.', autor: 'Benjamin Franklin' },
+  { texto: 'Livros são a academia da mente.', autor: 'Desconhecido' },
+  { texto: 'Uma boa leitura pela manhã é a melhor reunião do dia.', autor: 'Desconhecido' },
+  { texto: 'Ideias mudam o mundo. Hábitos mudam sua vida.', autor: 'Desconhecido' },
+  { texto: 'O mundo pertence aos que se preparam.', autor: 'Desconhecido' },
+  { texto: 'Preparo reduz ansiedade. Rotina cria confiança.', autor: 'Desconhecido' },
+  { texto: 'A ansiedade diminui quando a ação aumenta.', autor: 'Desconhecido' },
+  { texto: 'Ação é o antídoto do medo.', autor: 'Desconhecido' },
+  { texto: 'O medo de começar é sempre maior que a dificuldade de continuar.', autor: 'Desconhecido' },
+  { texto: 'Coragem não é ausência de medo. É agir apesar dele.', autor: 'Nelson Mandela' },
+  { texto: 'O corajoso cai e levanta. O covarde não cai porque nunca tentou.', autor: 'Desconhecido' },
+  { texto: 'A tentativa imperfeita supera a inércia perfeita.', autor: 'Desconhecido' },
+  { texto: 'Comece mal se necessário. Mas comece.', autor: 'Desconhecido' },
+  { texto: 'Imperfeito e feito supera perfeito e não feito.', autor: 'Desconhecido' },
+  { texto: 'A primeira versão de tudo é ruim. Faça assim mesmo.', autor: 'Desconhecido' },
+  { texto: 'Iteração é o processo de toda excelência.', autor: 'Desconhecido' },
+  { texto: 'Melhore 1% por dia. Em um ano, você será 37 vezes melhor.', autor: 'James Clear' },
+  { texto: 'Marginal gains são a filosofia dos campeões.', autor: 'Dave Brailsford' },
+  { texto: 'O composto do esforço diário é impressionante.', autor: 'Desconhecido' },
+  { texto: 'Pense como um atleta. Execute como um profissional.', autor: 'Desconhecido' },
+  { texto: 'Alta performance é um hábito, não um talento.', autor: 'Desconhecido' },
+  { texto: 'Os campeões fazem nos treinos o que os outros fazem nas competições.', autor: 'Desconhecido' },
+  { texto: 'Prepare-se em silêncio para brilhar quando necessário.', autor: 'Desconhecido' },
+  { texto: 'O palco não é onde você se prepara. É onde você entrega.', autor: 'Desconhecido' },
+  { texto: 'Você não sobe ao nível das suas metas. Você cai ao nível dos seus sistemas.', autor: 'James Clear' },
+  { texto: 'Sistemas superam metas.', autor: 'James Clear' },
+  { texto: 'Identidade primeiro. Comportamento depois. Resultado por último.', autor: 'James Clear' },
+  { texto: 'Seja o tipo de pessoa que tem os hábitos que você quer ter.', autor: 'James Clear' },
+  { texto: 'Cada ação é um voto para o tipo de pessoa que você quer se tornar.', autor: 'James Clear' },
+  { texto: 'A identidade é o hábito mais poderoso.', autor: 'Desconhecido' },
+  { texto: 'Quando você muda seu ambiente, você muda seu comportamento.', autor: 'Desconhecido' },
+  { texto: 'Torne o bom óbvio e o ruim invisível.', autor: 'James Clear' },
+  { texto: 'Reduza o atrito para os bons hábitos. Aumente para os ruins.', autor: 'James Clear' },
+  { texto: 'O ambiente é mais forte que a força de vontade.', autor: 'Desconhecido' },
+  { texto: 'Design seu espaço para facilitar suas melhores escolhas.', autor: 'Desconhecido' },
+  { texto: 'Uma boa noite começa com uma boa manhã.', autor: 'Desconhecido' },
+  { texto: 'O que você faz nas últimas horas do dia define as primeiras do próximo.', autor: 'Desconhecido' },
+  { texto: 'Durma com paz. Acorde com propósito.', autor: 'Desconhecido' },
+  { texto: 'A noite é para recuperar. A manhã é para atacar.', autor: 'Desconhecido' },
+  { texto: 'Planeje a noite anterior. Execute pela manhã.', autor: 'Desconhecido' },
+  { texto: 'Uma lista de três prioridades é mais poderosa que uma lista de trinta.', autor: 'Desconhecido' },
+  { texto: 'Quem tenta fazer tudo, não faz nada bem.', autor: 'Desconhecido' },
+  { texto: 'Minimalismo não é ter menos. É ter o suficiente.', autor: 'Desconhecido' },
+  { texto: 'Simplifique. A complexidade é inimiga da execução.', autor: 'Desconhecido' },
+  { texto: 'O simples executado consistentemente bate o complexo executado raramente.', autor: 'Desconhecido' },
+  { texto: 'Clareza é poder.', autor: 'Desconhecido' },
+  { texto: 'Saiba o porquê. O como aparece.', autor: 'Desconhecido' },
+  { texto: 'Com um porquê forte, qualquer como se torna possível.', autor: 'Friedrich Nietzsche' },
+  { texto: 'Propósito é o combustível que a motivação não consegue ser.', autor: 'Desconhecido' },
+  { texto: 'Conecte seus hábitos ao seu propósito e eles se tornarão inevitáveis.', autor: 'Desconhecido' },
+  { texto: 'O trabalho significativo é a maior fonte de energia.', autor: 'Desconhecido' },
+  { texto: 'Faça hoje algo que seu eu de amanhã agradeça.', autor: 'Desconhecido' },
+  { texto: 'Plante hoje. Colha amanhã.', autor: 'Desconhecido' },
+  { texto: 'A semente do sucesso é plantada na rotina diária.', autor: 'Desconhecido' },
+  { texto: 'Nada de extraordinário acontece na zona de conforto.', autor: 'Desconhecido' },
+  { texto: 'Expanda seus limites um dia de cada vez.', autor: 'Desconhecido' },
+  { texto: 'Seu potencial está além da sua zona de conforto.', autor: 'Desconhecido' },
+  { texto: 'Desconforto é o preço da evolução.', autor: 'Desconhecido' },
+  { texto: 'Faça o difícil enquanto é fácil.', autor: 'Lao Tsé' },
+  { texto: 'Os grandes feitos são feitos de pequenas coisas.', autor: 'Vincent van Gogh' },
+  { texto: 'Atenção aos detalhes é o que separa o bom do excelente.', autor: 'Desconhecido' },
+  { texto: 'A maestria está nos detalhes que os mediocres ignoram.', autor: 'Desconhecido' },
+  { texto: 'Cuide do centavo que o real se cuida.', autor: 'Provérbio brasileiro' },
+  { texto: 'Cuide dos minutos e as horas cuidam de si mesmas.', autor: 'Lord Chesterfield' },
+  { texto: 'Seja pontual. É a forma mais simples de respeitar os outros.', autor: 'Desconhecido' },
+  { texto: 'Respeite seu tempo. Respeite o tempo dos outros.', autor: 'Desconhecido' },
+  { texto: 'Comprometimento é fazer o que você disse que faria muito depois de ter passado o entusiasmo.', autor: 'Desconhecido' },
+  { texto: 'A palavra mais poderosa que você pode dizer a si mesmo é: eu sou capaz.', autor: 'Desconhecido' },
+  { texto: 'Você é mais forte do que pensa.', autor: 'Desconhecido' },
+  { texto: 'A maior batalha é vencida dentro de você, antes de qualquer outra.', autor: 'Desconhecido' },
+  { texto: 'Você tem dentro de si o suficiente para começar.', autor: 'Desconhecido' },
+  { texto: 'O potencial humano é praticamente ilimitado. O que limita é a crença.', autor: 'Desconhecido' },
+  { texto: 'Mude a narrativa interna. Mude a vida.', autor: 'Desconhecido' },
+  { texto: 'O que você acredita sobre si mesmo é a profecia mais poderosa.', autor: 'Desconhecido' },
+  { texto: 'Fale bem de si mesmo, especialmente quando ninguém está ouvindo.', autor: 'Desconhecido' },
+  { texto: 'Seu diálogo interno é o podcast mais influente que você ouve.', autor: 'Desconhecido' },
+  { texto: 'Seja seu próprio melhor torcedor.', autor: 'Desconhecido' },
+  { texto: 'Critique menos. Construa mais.', autor: 'Desconhecido' },
+  { texto: 'Cada crítica que você guarda para si cria espaço para uma nova tentativa.', autor: 'Desconhecido' },
+  { texto: 'Bondade com você mesmo é o primeiro passo para ser bom com os outros.', autor: 'Desconhecido' },
+  { texto: 'Amor próprio não é vaidade. É a base de tudo.', autor: 'Desconhecido' },
+  { texto: 'Quem se respeita atrai respeito.', autor: 'Desconhecido' },
+  { texto: 'Quem se cuida tem mais para oferecer.', autor: 'Desconhecido' },
+  { texto: 'A generosidade começa com a abundância interna.', autor: 'Desconhecido' },
+  { texto: 'Você não pode dar o que não tem.', autor: 'Desconhecido' },
+  { texto: 'Encha seu copo antes de encher o dos outros.', autor: 'Desconhecido' },
+  { texto: 'A família é o motivo. A saúde é o caminho.', autor: 'Desconhecido' },
+  { texto: 'O que você constrói diariamente, seus filhos herdam como cultura.', autor: 'Desconhecido' },
+  { texto: 'Cada hábito que você forma é uma lição que você passa adiante.', autor: 'Desconhecido' },
+  { texto: 'Ser pai é a maior responsabilidade e o maior privilégio.', autor: 'Desconhecido' },
+  { texto: 'Apareça todos os dias. Para o trabalho, para a família, para você.', autor: 'Desconhecido' },
+  { texto: 'Presença consistente é amor em ação.', autor: 'Desconhecido' },
+  { texto: 'Qualidade de vida começa com qualidade de hábitos.', autor: 'Desconhecido' },
+  { texto: 'Felicidade não é um destino. É uma prática diária.', autor: 'Desconhecido' },
+  { texto: 'A alegria está nos pequenos rituais do dia a dia.', autor: 'Desconhecido' },
+  { texto: 'Aprecie o ordinário. É onde a vida acontece de verdade.', autor: 'Desconhecido' },
+  { texto: 'Não perca o presente sonhando com o futuro.', autor: 'Desconhecido' },
+  { texto: 'O agora é tudo que você realmente tem.', autor: 'Eckhart Tolle' },
+  { texto: 'Esteja onde seus pés estão.', autor: 'Desconhecido' },
+  { texto: 'Viva de forma que seu corpo e mente trabalhem juntos.', autor: 'Desconhecido' },
+  { texto: 'Harmonia entre mente, corpo e propósito é a maior riqueza.', autor: 'Desconhecido' },
+  { texto: 'A vida bem vivida é feita de dias bem começados.', autor: 'Desconhecido' },
+  { texto: 'Bom dia para você, que escolhe acordar com intenção.', autor: 'Desconhecido' },
+  { texto: 'Você é a média dos cinco hábitos que mais pratica.', autor: 'Desconhecido' },
+  { texto: 'Construa sua vida tijolo a tijolo, dia a dia.', autor: 'Desconhecido' },
+  { texto: 'O arquiteto do seu destino mora nos seus hábitos.', autor: 'Desconhecido' },
+  { texto: 'Nenhum vento sopra a favor de quem não sabe aonde vai.', autor: 'Sêneca' },
+  { texto: 'Tenha um norte. Deixe os hábitos te levarem até lá.', autor: 'Desconhecido' },
+  { texto: 'O amanhã que você quer começa com o hoje que você constrói.', autor: 'Desconhecido' },
+  { texto: 'Mais um dia. Mais uma chance. Aproveite.', autor: 'Desconhecido' },
+  { texto: 'O hábito diário é a assinatura do seu caráter.', autor: 'Desconhecido' },
+  { texto: 'Nada substitui o trabalho feito com constância.', autor: 'Desconhecido' },
+  { texto: 'A grandeza é reservada para quem aparece todos os dias.', autor: 'Desconhecido' },
+  { texto: 'Seu esforço silencioso de hoje é sua voz amanhã.', autor: 'Desconhecido' },
+  { texto: 'A vitória de amanhã está no sacrifício de hoje.', autor: 'Desconhecido' },
+  { texto: 'Cada dia vivido com propósito é um dia bem investido.', autor: 'Desconhecido' },
+  { texto: 'O que você planta em silêncio, colhe em público.', autor: 'Desconhecido' },
+  { texto: 'Seja consistente quando a motivação faltar.', autor: 'Desconhecido' },
+  { texto: 'A dor do crescimento sempre supera a dor do arrependimento.', autor: 'Desconhecido' },
+  { texto: 'Não espere o momento perfeito. Perfeiçoe o momento.', autor: 'Desconhecido' },
+  { texto: 'Cada amanhecer é um convite à reinvenção.', autor: 'Desconhecido' },
+  { texto: 'O hábito bem cultivado floresce na hora certa.', autor: 'Desconhecido' },
+  { texto: 'Hoje é o dia mais jovem que você terá pelo resto da vida. Use bem.', autor: 'Desconhecido' },
+];
+
+function getMorningChecked() {
+  const today = todayKey();
+  try { return JSON.parse(localStorage.getItem("morning_" + today) || "{}"); } catch { return {}; }
+}
+function saveMorningChecked(checked) {
+  localStorage.setItem("morning_" + todayKey(), JSON.stringify(checked));
+}
+function toggleMorning(id) {
+  const checked = getMorningChecked();
+  checked[id] = !checked[id];
+  saveMorningChecked(checked);
+  renderMorning();
+}
+function resetMorning() {
+  localStorage.removeItem("morning_" + todayKey());
+  renderMorning();
+}
+function getFrase() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+  return FRASES[dayOfYear % FRASES.length];
+}
+
+function renderMorning() {
+  const checked = getMorningChecked();
+  const done  = MORNING_ITEMS.filter(it => checked[it.id]).length;
+  const total = MORNING_ITEMS.length;
+  const pct   = Math.round(done / total * 100);
+  const pctColor = pct === 100 ? "#34D399" : pct >= 55 ? "#F59E0B" : "#818CF8";
+
+  const today  = todayKey();
+  const dateObj = new Date(today + "T12:00:00");
+  const DIAS  = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+  const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  const dataStr = `${DIAS[dateObj.getDay()]}, ${dateObj.getDate()} de ${MESES[dateObj.getMonth()]}`;
+
+  const hr = parseInt(new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", hour: "numeric", hour12: false }));
+  const saudacao = hr < 12 ? "Bom dia, Rodrigo" : hr < 18 ? "Boa tarde, Rodrigo" : "Boa noite, Rodrigo";
+
+  const listHtml = MORNING_ITEMS.map(it => {
+    const isDone = !!checked[it.id];
+    return `<div class="morning-item${isDone?" done":""}" onclick="toggleMorning('${it.id}')">
+      <div class="morning-check">${isDone?"✓":""}</div>
+      <span class="morning-item-icon">${it.icon}</span>
+      <span class="morning-item-label">${it.label}</span>
+    </div>`;
+  }).join("");
+
+  const frase = getFrase();
+
+  document.getElementById("morning-content").innerHTML = `
+    <div class="morning-hero">
+      <div class="morning-date">${dataStr}</div>
+      <div class="morning-greeting">${saudacao} 👋</div>
+      <div class="morning-sub">${done===total?"Tudo feito! Ótima manhã ✨":`${total-done} item${total-done>1?"s":""} restante${total-done>1?"s":""}`}</div>
+      <div class="morning-progress-wrap">
+        <div class="morning-progress-row">
+          <span class="morning-progress-label">Progresso</span>
+          <span class="morning-progress-count" style="color:${pctColor}">${done}/${total}</span>
+        </div>
+        <div class="morning-bar-bg">
+          <div class="morning-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,${pctColor},${pctColor}bb)"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="morning-list">${listHtml}</div>
+
+    <button class="morning-reset" onclick="resetMorning()">↺ Reiniciar checklist</button>
+
+    <div class="morning-quote">
+      <div class="morning-quote-text">"${frase.texto}"</div>
+      <div class="morning-quote-author">— ${frase.autor}</div>
+    </div>`;
+}
+
 function render() {
   if(currentView==="daily")   renderDaily();
   if(currentView==="weekly")  renderWeekly();
@@ -680,7 +1342,8 @@ function switchView(v) {
   document.querySelectorAll(".nav-btn").forEach(el => el.classList.remove("active"));
   document.getElementById("view-"+v).classList.add("active");
   document.querySelector(`[data-view="${v}"]`).classList.add("active");
-  render();
+  if (v === "morning") renderMorning();
+  else render();
 }
 
 function selectDate(d) { selectedDate = d; renderDaily(); }
@@ -854,7 +1517,6 @@ function importData() {
     reader.onload = ev => {
       try {
         const parsed = JSON.parse(ev.target.result);
-        // Support both old format (plain data) and new format {habits, data}
         if(parsed.habits && parsed.data) {
           HABITS = parsed.habits; data = parsed.data;
         } else {
